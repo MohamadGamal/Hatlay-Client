@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService }   from '../shareable/auth.service';
+import { AuthService }       from '../shareable/auth.service';
 import { Router }            from '@angular/router';
 import { User }              from '../model/user.model';
 
@@ -7,12 +7,11 @@ import { User }              from '../model/user.model';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers:[AuthService]
 
 })
 export class RegisterComponent implements OnInit {
 
-  user :User;
+  private user :User = new User();
 
   constructor( private authService:AuthService,private router:Router ) {
     this.user = new User();
@@ -23,7 +22,6 @@ export class RegisterComponent implements OnInit {
   }
   
   register(){
-
     this.authService.doRegister(this.user).then(
         res=>{
           if(res){

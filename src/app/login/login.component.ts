@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService}        from '../shareable/auth.service'
+import { AuthService}        from '../shareable/auth.service'
 import { Router }            from '@angular/router';
 import { User }              from '../model/user.model';
 
@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   login(){
-        console.log(this.user);
         this.authService.doLogin(this.user).then(
         res=>{
           if(res){

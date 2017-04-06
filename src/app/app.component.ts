@@ -1,7 +1,8 @@
 import { Component,SimpleChanges,OnInit,OnChanges } from '@angular/core';
 //import{PostService} from "./post/post.service";
-import { Router }            from '@angular/router';
+import { Router }           from '@angular/router';
 import {AuthService}        from './shareable/auth.service'
+import {UserService}        from './shareable/user.service'
 
 
 @Component({
@@ -11,38 +12,27 @@ import {AuthService}        from './shareable/auth.service'
 
 })
 export class AppComponent implements OnInit, OnChanges {
-
   private user=null;
-  private x = 1;
   private logined = false;
   
-  constructor(private router:Router ,private auth:AuthService){
-
-        if(localStorage.getItem("user")){
-          this.user = JSON.parse(localStorage.getItem("user"));
-          this.logined = true;
-        }else{
-          this.user =null;
-        }
-
-    this.auth.isLoggedIn().subscribe(loggedIn => {
-      console.log(" login ::"+loggedIn);
-      this.logined = loggedIn;
-      if(loggedIn){
-      this.user = JSON.parse(localStorage.getItem("user"));
-      }
-    });
-
+  constructor(private router:Router ,private authService:AuthService ,private userService:UserService){
+    this.authService.isLoggedIn().subscribe(loggedIn =>{
+       this.logined = loggedIn;
+       this.user=this.authService.getUser();
+       console.log(this.authService.getUser());
+      });
   }
-
-
-  ngOnInit() {}
-
+  ngOnInit() {
+  }
   ngOnChanges(changes: SimpleChanges): void {}
 
   logout(){
-    this.auth.logOut();
+    this.authService.logOut();
     this.router.navigate(["/home"]);
+  }
+
+  showSideNav(){
+    
   }        
 
 }

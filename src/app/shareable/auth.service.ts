@@ -6,7 +6,17 @@ import {Subject,Observable} from 'rxjs';
 export class AuthService {
 
   private loggedIn = false;
-  private logger = new Subject<boolean>();
+  private user     = {}   ;
+  
+  getUser(){
+    return this.user;
+  }
+  // private userSubject = new Subject<User>(); 
+  // userData(): Observable<User> {
+  //   return this.userSubject.asObservable();
+  // }
+
+  private logger   = new Subject<boolean>();
   isLoggedIn(): Observable<boolean> {
     return this.logger.asObservable();
   }
@@ -19,17 +29,14 @@ export class AuthService {
 
   }
   doLogin(user:User) {
-    console.log(JSON.stringify(user));
     return this.http
           .post(this.postsUrl+"/login",JSON.stringify(user),{headers:this.headers})
           .toPromise()
           .then(res =>{
             if(res.json().token){
-              // store username and jwt token in local storage to keep user logged in between page refreshes
-              localStorage.setItem('user',JSON.stringify(res.json().user));
               localStorage.setItem('token', res.json().token);
-
               this.loggedIn = true;
+              this.user= res.json().user;
               this.logger.next(this.loggedIn);
               return true;              
             }else{
@@ -43,10 +50,9 @@ export class AuthService {
 
 
   logOut() {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    this.loggedIn = false;
-    this.logger.next(this.loggedIn);
+        localStorage.removeItem('token');
+        this.loggedIn = false;
+        this.logger.next(this.loggedIn);
   }
 
   //    private handleError(error: any): Promise<any> {
@@ -55,22 +61,27 @@ export class AuthService {
   // }
 
   doRegister(user:User){
-    console.log(JSON.stringify(user));
+
     return this.http
           .post(this.postsUrl+"/register",JSON.stringify(user),{headers:this.headers})
           .toPromise()
           .then(res => {
             if(res.json().token){
-              // store username and jwt token in local storage to keep user logged in between page refreshes
-              localStorage.setItem('user',JSON.stringify(res.json().user));
+              console.log("in true");
+              
               localStorage.setItem('token', res.json().token);
-
+              this.loggedIn = true;
+              this.user= res.json().user;
+              this.logger.next(this.loggedIn);  
               return true;              
             }else{
               return false;
             }
           })
-          .catch(res=>{ return false;});
+          .catch(res=>{ 
+              console.log("errrrror");
+              console.log(res.json());            
+            return false;});
 
   }
 

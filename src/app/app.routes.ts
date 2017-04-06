@@ -4,13 +4,29 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { FriendsComponent } from './friends/friends.component';
+import { GroupsComponent } from './groups/groups.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const appRoutes: Routes = [
-{ path: 'login',
-component: LoginComponent },
+{ 
+    path: 'login',
+    component: LoginComponent },
 {
-path: 'register',
-component: RegisterComponent
+    path: 'register',
+    component: RegisterComponent
+},
+{
+    path: 'friends',
+    component: FriendsComponent
+},
+{
+    path: 'groups',
+    component: GroupsComponent
+},
+{
+    path: 'profile',
+    component: ProfileComponent
 },
 {
 path: 'home',
