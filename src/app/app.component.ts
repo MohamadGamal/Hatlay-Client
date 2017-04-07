@@ -24,6 +24,7 @@ export class AppComponent implements OnInit, OnChanges {
   }
   ngOnInit() {
   }
+
   ngOnChanges(changes: SimpleChanges): void {}
 
   logout(){
