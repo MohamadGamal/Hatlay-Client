@@ -1,17 +1,18 @@
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Hatlay</a>
+            <ul>
+                <li routerLink="/home" routerLinkActive="active"><a >Hatlay</a></li>
+                <li *ngIf="logined" routerLink="/orders" routerLinkActive="active" ><a >orders</a></li>
+                <li *ngIf="logined" routerLink="/friends" routerLinkActive="active" ><a >friends</a></li>
+                <li *ngIf="logined" routerLink="/groups" routerLinkActive="active" ><a >groups</a></li>                
+            </ul>
 
             <a   data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <div class="right hide-on-med-and-down">
                 <ul>
-
-                <li><a  routerLink="/home" routerLinkActive="active" >home</a></li>
-                <li *ngIf="logined" routerLink="/profile" routerLinkActive="active" ><a >{{user.name}}</a></li>
-                <li *ngIf="logined" routerLink="/friends" routerLinkActive="active" ><a >friends</a></li>
-                <li *ngIf="logined" routerLink="/groups" routerLinkActive="active" ><a >groups</a></li>
                 <li *ngIf="logined"  ><a  (click)="logout()" >logout</a></li>
+                <li *ngIf="logined" routerLink="/profile" routerLinkActive="active" ><a >{{user.name}}</a></li>
                 <li *ngIf="!logined" ><a   routerLink="/login" routerLinkActive="active">login</a></li>
                 <li *ngIf="!logined" ><a  routerLink="/register" routerLinkActive="active">register</a></li>
                 </ul>
@@ -26,7 +27,6 @@
                 </form>
             </div>
 
-
             <ul class="side-nav" id="mobile-demo">
             <li *ngFor="let n of navList"><a routerLink="/{{n}}" routerLinkActive="active">{{n}}</a></li>
 
@@ -36,6 +36,6 @@
 </div>
 
 <div class="container">
-<router-outlet></router-outlet>
-    </div>
+    <router-outlet></router-outlet>
+</div>
 

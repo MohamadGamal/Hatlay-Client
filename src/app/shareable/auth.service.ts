@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import {Http ,Headers} from '@angular/http';
 import { User }        from '../model/user.model';
-import {Subject,Observable} from 'rxjs';
+
 import { UserService }       from './user.service';
+
+import { HttpClientService } from '../shareable/http-client.service'
+import { Subject,Observable} from 'rxjs';
+
 @Injectable()
 export class AuthService {
 
@@ -21,15 +24,16 @@ export class AuthService {
   }
 
 
-  private headers = new Headers({'Content-Type': 'application/json'});
   private postsUrl = 'http://localhost:8000/user';  // URL to web api
 
-  constructor(private http: Http,private userService:UserService) {
+
+  constructor(private http: HttpClientService,private userService:UserService) {
+
 
   }
   doLogin(user:User) {
     return this.http
-          .post(this.postsUrl+"/login",JSON.stringify(user),{headers:this.headers})
+          .post(this.postsUrl+"/login",JSON.stringify(user))
           .toPromise()
           .then(res =>{
             if(res.json().token){
@@ -63,7 +67,7 @@ export class AuthService {
   doRegister(user:User){
 
     return this.http
-          .post(this.postsUrl+"/register",JSON.stringify(user),{headers:this.headers})
+          .post(this.postsUrl+"/register",JSON.stringify(user))
           .toPromise()
           .then(res => {
             if(res.json().token){

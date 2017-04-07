@@ -1,22 +1,30 @@
 import { Injectable } from '@angular/core';
+
 import { AuthService }       from './auth.service';
-import {Http ,Headers} from '@angular/http';
+
 import {Observable} from 'rxjs';
+
+import { HttpClientService } from '../shareable/http-client.service'
+
 @Injectable()
 export class UserService {
 private user;
 private userFull={};
 private Url = 'http://localhost:8000/user';
  private headers = new Headers({'Content-Type': 'application/json'});
-   
-  constructor(private http: Http) { 
-  }
+ 
   getUser(){
     return this.user;
   }
   public setUser(user){
 
+
  this.user=user;
+  }
+  private URL = 'http://localhost:8000/user/';  // URL to web api
+
+  constructor(private http: HttpClientService) {
+
 
   }
     public getUserFull(){
@@ -34,6 +42,22 @@ return this.http.get(this.Url+"/"+this.user.id)
   public reloadUser(){
     var user = JSON.parse(localStorage.getItem("user"));
     return user ;
+  }
+
+  public follow(id){
+    return this.http
+          .get(this.URL+"/friend/"+id)
+          .toPromise()
+          .then(res =>true)
+          .catch(res => false );
+  }
+  public unfollow(id){
+    return this.http
+          .delete(this.URL+"/friend/"+id)
+          .toPromise()
+          .then(res =>true)
+          .catch(res => false );
+
   }
 
 

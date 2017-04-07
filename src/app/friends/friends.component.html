@@ -1,10 +1,28 @@
 <p>
   friends works!
-  {{user.friends}}
 </p>
 
-<ul>
-  <li *ngFor="let friend of user.friends" >
+  <span class="new badge red">4</span>
+  <br />
+  <span class="new badge blue">4</span>
+
+<app-user-search (selectedObject)="addSearchResult($event)" ></app-user-search>
+
+<div *ngIf="friend" class="chip">
+    <img src="http://lorempixel.com/100/190/nature/6" alt="Contact Person">
           {{friend.name}}
-  </li>
-</ul>
+          <a *ngIf="isFriend" (click)="unfollow(friend._id)" >Unfollow</a>
+          <a *ngIf="!isFriend" (click)="follow(friend)" >follow</a>
+  </div>
+<div class="row">
+<div class="col  s10 m5 l3" *ngFor="let friend of user.friends " >
+          <div class="card">
+            <div class="card-image">
+              <img class="img" src="http://lorempixel.com/100/190/nature/6">
+              <span class="card-title">{{friend.name}}</span>
+            </div>
+            <div class="card-action">
+              <a (click)="unfollow(friend._id )" >Unfollow</a>
+            </div>
+          </div>
+</div>

@@ -1,6 +1,6 @@
 export class User{
 
-    private name :String;
+    public name :String;
     private email:String;
     private password:String;
     private friends:Array<any>;
