@@ -1,3 +1,44 @@
 <p>
   groups works!
 </p>
+<div>
+
+<app-singlegroup [group]="'MND'"></app-singlegroup>
+<ul>
+<li *ngFor="let item of user?.friends; let i = index; ">{{friend1}}</li>
+</ul>
+
+<ul>
+<li *ngFor="let item of choosenList; let i = index; ">
+  User name:{{item.name}}
+  </br>
+  Email: {{item.email}}
+  </br>
+  <button (click)="removefromlist(i)">remove</button>
+  
+  
+  </li>
+</ul>
+  <input list="browsers"  #inp >
+  <button (click)="addtolist(inp.value);inp.value=''" >hi</button>
+<datalist id="browsers">
+  
+ <option *ngFor="let item of userfriends; let i = index;"   [value]="item.email" >{{item.name}}</option>
+</datalist>
+
+  <input   #gname >
+  <button (click)="addgroup(inp.gname);inp.value=''" >hi</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

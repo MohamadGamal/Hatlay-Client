@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import {Http ,Headers} from '@angular/http';
 import { User }        from '../model/user.model';
 import {Subject,Observable} from 'rxjs';
+import { UserService }       from './user.service';
 @Injectable()
 export class AuthService {
 
   private loggedIn = false;
   private user     = {}   ;
   
-  getUser(){
-    return this.user;
-  }
+
   // private userSubject = new Subject<User>(); 
   // userData(): Observable<User> {
   //   return this.userSubject.asObservable();
@@ -25,7 +24,7 @@ export class AuthService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private postsUrl = 'http://localhost:8000/user';  // URL to web api
 
-  constructor(private http: Http) {
+  constructor(private http: Http,private userService:UserService) {
 
   }
   doLogin(user:User) {
@@ -36,7 +35,7 @@ export class AuthService {
             if(res.json().token){
               localStorage.setItem('token', res.json().token);
               this.loggedIn = true;
-              this.user= res.json().user;
+              this.userService.setUser(res.json().user);
               this.logger.next(this.loggedIn);
               return true;              
             }else{
@@ -51,6 +50,7 @@ export class AuthService {
 
   logOut() {
         localStorage.removeItem('token');
+        this.userService.setUser(null);
         this.loggedIn = false;
         this.logger.next(this.loggedIn);
   }

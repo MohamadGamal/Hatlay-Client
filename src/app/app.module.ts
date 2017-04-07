@@ -3,10 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import 'hammerjs';
-import "materialize-css";
-import "angular2-materialize";
-import { MaterializeModule } from 'angular2-materialize';
 
 
 import { AppComponent } from './app.component';
@@ -20,6 +16,9 @@ import { AppRoutingModule }     from './app.routes';
 import { FriendsComponent } from './friends/friends.component';
 import { GroupsComponent } from './groups/groups.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SinglegroupComponent } from './groups/singlegroup/singlegroup.component';
+import { IfloggedDirective } from './shareable/iflogged.directive';
+import { ObjectmapperPipe } from './shareable/objectmapper.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +29,9 @@ import { ProfileComponent } from './profile/profile.component';
     FriendsComponent,
     GroupsComponent,
     ProfileComponent,
+    SinglegroupComponent,
+    IfloggedDirective,
+    ObjectmapperPipe,
   ],
   imports: [
     BrowserModule,
