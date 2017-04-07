@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import {  Headers} from '@angular/http';
 import { AuthService }       from './auth.service';
 
 import {Observable} from 'rxjs';
@@ -32,8 +32,9 @@ private Url = 'http://localhost:8000/user';
     }
 
   public refreshUserFull() : Observable<any> {
-console.log(this.Url+"/"+this.user.id);
-return this.http.get(this.Url+"/"+this.user.id)
+ 
+console.log(this.Url+"/"+this.user._id);
+return this.http.get(this.Url+"/"+this.user._id)
 .map(response => response.json()? this.userFull=response.json():false )
 .catch(response=> Observable.throw('errrror'));
 

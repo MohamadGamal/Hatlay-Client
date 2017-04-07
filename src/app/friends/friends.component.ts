@@ -3,10 +3,7 @@ import { AuthService}        from '../shareable/auth.service'
 import { Router }            from '@angular/router';
 import { User }              from '../model/user.model';
 import { UserService}        from '../shareable/user.service'
-<<<<<<< HEAD
-=======
 
->>>>>>> b5b7af5d82e81e66fbee9f49dffa62d18d470c5c
 @Component({
   selector: 'app-friends',
   templateUrl: './friends.component.html',
@@ -21,16 +18,11 @@ export class FriendsComponent implements OnInit {
 
   constructor(private authService:AuthService ,private userService:UserService) { 
 
-<<<<<<< HEAD
-  constructor(private authService:AuthService,private userService:UserService) { 
+
     console.log("constructor");
     this.user = userService.getUser();
     console.log(userService.getUser());
-=======
-    this.user = authService.getUser();
-    console.log(authService.getUser());
-    
->>>>>>> b5b7af5d82e81e66fbee9f49dffa62d18d470c5c
+
   }
 
   ngOnInit() {
