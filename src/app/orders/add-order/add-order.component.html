@@ -7,25 +7,48 @@
     <form class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name">Last Name</label>
+          <input id="order_name" type="text" class="validate">
+          <label for="order_name">order name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
+          <input id="order_time" type="text" class="validate">
+          <label for="order_time">order time</label>
         </div>
       </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
-        </div>
+      
+      <div class="row" *ngIf="!toggleRestaur" >          
+          <app-user-search class="col s8" [url]='URL' (selectedObject)="addSearchResult($event)" ></app-user-search>
+          <div class="col s4"> <button (click)="toggleRestaur=!toggleRestaur" > Add new</button></div>
+      </div>
+      <div>
+          <div *ngIf="toggleRestaur" class="col s12">
+                  <div class="file-field input-field">
+                    <div class="btn">
+                      <span>File</span>
+                      <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                      <input class="file-path validate" type="text">
+                    </div>
+                  </div>
+                <div class="input-field col s12">
+                  <input id="rest_name" type="text" class="validate">
+                  <label for="rest_name">Resturnt name</label>
+                </div>            
+              <div class="col s12">
+                <div class="row s12 l12"> 
+                <div class="col s6 l6 m6" (click)="toggleRestaur=!toggleRestaur" ><button>Cancel</button></div>
+                <div class="col s6 l6 m6" (click)="addRestuernt"><button>Save</button></div>
+                </div>
+              </div>        
+
+
+            </div>        
       </div>
       <div class="row">
         <div class="col s12">
-          This is an inline input field:
           <div class="input-field inline">
             <input id="email" type="email" class="validate">
             <label for="email" data-error="wrong" data-success="right">Email</label>

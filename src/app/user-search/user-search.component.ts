@@ -1,4 +1,4 @@
-import { Component, OnInit ,Output ,EventEmitter } from '@angular/core';
+import { Component, OnInit ,Output ,EventEmitter,Input } from '@angular/core';
 
 import { Router }            from '@angular/router';
 import { Observable }        from 'rxjs/Observable';
@@ -20,16 +20,21 @@ import {UserSearchService}  from './user-search.service'
 })
 export class UserSearchComponent implements OnInit {
   @Output() selectedObject = new EventEmitter();
+  @Input () url ;
 
   objects:Observable<any[]>;
   private searchTerms = new Subject<string>();
   constructor(private router: Router, private userSearchService : UserSearchService) { 
+
   }
 
   search(term: string): void {
     this.searchTerms.next(term);
   }
   ngOnInit() {
+    console.log(this.url);
+    this.userSearchService.setUrl(this.url);
+    
     this.objects = this.searchTerms
       .debounceTime(300)        // wait 300ms after each keystroke before considering the term
       .distinctUntilChanged()   // ignore if next search term is same as previous

@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddOrderComponent implements OnInit {
 
+  private  URL ="http://localhost:8000/user/";
+  private toggleRestaur= false;
   constructor() { }
 
   ngOnInit() {
+  }
+
+
+
+  addSearchResult(resturent){
+      console.log(resturent);
   }
 
 }

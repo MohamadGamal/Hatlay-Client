@@ -12,10 +12,6 @@ export class AuthService {
   getUser(){
     return this.user;
   }
-  // private userSubject = new Subject<User>(); 
-  // userData(): Observable<User> {
-  //   return this.userSubject.asObservable();
-  // }
 
   private logger   = new Subject<boolean>();
   isLoggedIn(): Observable<boolean> {

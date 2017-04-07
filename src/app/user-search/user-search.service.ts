@@ -6,12 +6,14 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UserSearchService {
-
+  private url ;
   constructor(private http: Http) { }
-
+    setUrl(url:string){
+        this.url=url;
+    }
     search(term: string): Observable<any[]> {
     return this.http
-               .get(`http://localhost:8000/user/${term}`)
+               .get(this.url+term)
                .map(response => response.json() as any[]);
   }
 
