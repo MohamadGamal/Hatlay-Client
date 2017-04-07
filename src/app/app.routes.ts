@@ -1,12 +1,15 @@
-import { NgModule }             from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule           }   from '@angular/core';
+import { RouterModule, 
+                    Routes  }   from '@angular/router';
 
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { FriendsComponent } from './friends/friends.component';
-import { GroupsComponent } from './groups/groups.component';
-import { ProfileComponent } from './profile/profile.component';
+import { RegisterComponent  }   from './register/register.component';
+import { LoginComponent     }   from './login/login.component';
+import { HomeComponent      }   from './home/home.component';
+import { FriendsComponent   }   from './friends/friends.component';
+import { GroupsComponent    }   from './groups/groups.component';
+import { ProfileComponent   }   from './profile/profile.component';
+import { OrdersComponent    }   from './orders/orders.component';
+import { AddOrderComponent  }   from './orders/add-order/add-order.component';
 
 const appRoutes: Routes = [
 { 
@@ -23,6 +26,23 @@ const appRoutes: Routes = [
 {
     path: 'groups',
     component: GroupsComponent
+},
+{
+    path: 'orders',
+    component: OrdersComponent,
+    children: [
+            // {path: '', redirectTo: 'medium', pathMatch: 'full'},
+            {
+                path: 'list',
+                component:LoginComponent
+            },
+                {
+                path: 'add',
+                component:AddOrderComponent
+            }
+
+            ]
+
 },
 {
     path: 'profile',

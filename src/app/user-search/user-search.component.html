@@ -1,0 +1,11 @@
+<div id="search-component">
+  <h5>Users Search</h5>
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+  <button (click)="follow()">follow</button>
+  <div>
+    <div *ngFor="let object of objects | async"
+         (click)="selectObject(object);searchBox.value='';" class="search-result" >
+      {{object.name}}
+    </div>
+  </div>
+</div>
