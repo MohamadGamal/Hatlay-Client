@@ -29,7 +29,8 @@ import { OrdersComponent } from './orders/orders.component';
 import { AddOrderComponent } from './orders/add-order/add-order.component';
 import { UserComponent } from './shareable/user/user.component';
 import { ListordersComponent } from './orders/listorders/listorders.component';
-
+import { OrdersService } from './shareable/orders.service';
+import { UniquePipe } from './shareable/unique.pipe';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ListordersComponent } from './orders/listorders/listorders.component';
     AddOrderComponent,
     UserComponent,
     ListordersComponent,
+    UniquePipe,
 
   ],
   imports: [
@@ -58,7 +60,7 @@ import { ListordersComponent } from './orders/listorders/listorders.component';
     HttpModule,
     AppRoutingModule  /// routes from another file
   ],
-  providers: [UserService,AuthService,HttpClientService,GroupService],
+  providers: [UserService,AuthService,HttpClientService,GroupService,OrdersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

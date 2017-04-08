@@ -7,28 +7,23 @@
   <table>
         <thead>
           <tr>
-              <th>Name</th>
-              <th>Item Name</th>
-              <th>Item Price</th>
+              <th>Order Number</th>
+              <th>Order Name</th>
+              <th>Order Users</th>
+              <th>Unique Users</th>
+             <th>Creation Date</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
+          <tr *ngFor="let order of orderslist; let i = index;">
+            <td>{{order.number}}</td>
+            <td>{{order.name}}</td>
+            <td>{{order.users.length}}</td>
+            <td>{{order.meals|unique:"userId"}}</td>
+            <td>{{order.createdate}}</td>
           </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-          </tr>
+
         </tbody>
       </table>
-</div>
+</div> 
