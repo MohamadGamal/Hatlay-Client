@@ -10,6 +10,7 @@ import { GroupsComponent    }   from './groups/groups.component';
 import { ProfileComponent   }   from './profile/profile.component';
 import { OrdersComponent    }   from './orders/orders.component';
 import { AddOrderComponent  }   from './orders/add-order/add-order.component';
+import { ListordersComponent    }   from './orders/listorders/listorders.component';
 
 const appRoutes: Routes = [
 { 
@@ -34,7 +35,7 @@ const appRoutes: Routes = [
             // {path: '', redirectTo: 'medium', pathMatch: 'full'},
             {
                 path: 'list',
-                component:LoginComponent
+                component:ListordersComponent
             },
                 {
                 path: 'add',

@@ -20,9 +20,11 @@ export class FriendsComponent implements OnInit {
 
   constructor(private authService:AuthService ,private userService:UserService) { 
 
-    this.user = authService.getUser();
-    console.log(authService.getUser());
-    
+
+    console.log("constructor");
+    this.user = userService.getUser();
+    console.log(userService.getUser());
+
   }
 
   ngOnInit() {

@@ -18,8 +18,8 @@ export class AppComponent implements OnInit, OnChanges {
   constructor(private router:Router ,private authService:AuthService ,private userService:UserService){
     this.authService.isLoggedIn().subscribe(loggedIn =>{
        this.logined = loggedIn;
-       this.user=this.authService.getUser();
-       console.log(this.authService.getUser());
+       this.user=this.userService.getUser();
+     //  console.log(this.userService.getUser());
       });
   }
   ngOnInit() {

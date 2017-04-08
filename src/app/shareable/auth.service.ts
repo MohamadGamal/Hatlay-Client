@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User }        from '../model/user.model';
+
+import { UserService }       from './user.service';
+
 import { HttpClientService } from '../shareable/http-client.service'
 import { Subject,Observable} from 'rxjs';
 
@@ -13,6 +16,7 @@ export class AuthService {
     return this.user;
   }
 
+
   private logger   = new Subject<boolean>();
   isLoggedIn(): Observable<boolean> {
     return this.logger.asObservable();
@@ -21,7 +25,9 @@ export class AuthService {
 
   private postsUrl = 'http://localhost:8000/user';  // URL to web api
 
-  constructor(private http: HttpClientService) {
+
+  constructor(private http: HttpClientService,private userService:UserService) {
+
 
   }
   doLogin(user:User) {
@@ -32,7 +38,7 @@ export class AuthService {
             if(res.json().token){
               localStorage.setItem('token', res.json().token);
               this.loggedIn = true;
-              this.user= res.json().user;
+              this.userService.setUser(res.json().user);
               this.logger.next(this.loggedIn);
               return true;              
             }else{
@@ -47,6 +53,7 @@ export class AuthService {
 
   logOut() {
         localStorage.removeItem('token');
+        this.userService.setUser(null);
         this.loggedIn = false;
         this.logger.next(this.loggedIn);
   }
