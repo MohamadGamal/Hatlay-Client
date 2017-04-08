@@ -31,6 +31,8 @@ import { UserComponent } from './shareable/user/user.component';
 import { ListordersComponent } from './orders/listorders/listorders.component';
 import { OrdersService } from './shareable/orders.service';
 import { UniquePipe } from './shareable/unique.pipe';
+import { FilterPipe } from './filter.pipe';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +53,11 @@ import { UniquePipe } from './shareable/unique.pipe';
     AddOrderComponent,
     UserComponent,
     ListordersComponent,
+
     UniquePipe,
+
+    FilterPipe
+
 
   ],
   imports: [

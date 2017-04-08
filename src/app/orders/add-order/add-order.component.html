@@ -1,43 +1,124 @@
-
-
 <div class="row">
-  
+
   <div class="col s12 m12 l5 card hoverable">
-  <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name">Last Name</label>
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="order_name" name="order_name" [(ngModel)]="order.name"  type="text" class="validate">
+            <label for="order_name">order name</label>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="order_time" name="order_time" [(ngModel)]="order.time" type="text" class="validate">
+            <label for="order_time">order time</label>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
+
+        <div class="row" *ngIf="!toggleRestaur && toggleSelectedRest ">
+          <app-user-search class="col s8" [url]='URL' (selectedObject)="addSearchResult($event)"></app-user-search>
+          <div class="col s4"> <button (click)="toggleRestaur=!toggleRestaur"> Add new</button></div>
         </div>
+        <div class="row" *ngIf="!toggleSelectedRest">
+          <div class="col s8" ><label > {{restaurant.name}} </label></div>
+          <div class="col s4"> <button (click)="toggleSelectedRest=!toggleSelectedRest"> Change</button></div>
+        </div>
+
+
+        <div>
+          <div *ngIf="toggleRestaur " class="col s12">
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>File</span>
+                <input type="file"  name="rest_menu" [(ngModel)]="newRestaurant.menu"   >
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+            <div class="input-field col s12">
+              <input id="rest_name" name="rest_name" [(ngModel)]="newRestaurant.name" type="text" class="validate">
+              <label for="rest_name">{{newRestaurant.name}}</label>
+            </div>
+
+            <div class="col s12">
+              <div class="row s12 l12">
+                <div class="col s6 l6 m6" (click)="toggleRestaur=!toggleRestaur"><button>Cancel</button></div>
+                <div class="col s6 l6 m6" (click)="addRestuernt()"><button>Save</button></div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <div class="input-field inline">
+              <input id="friendOrGroup" name="searchTerm" [(ngModel)]="searchTerm" (input)="searchTerm = $event.target.value" type="text"
+                class="validate">
+              <label for="friendOrGroup" data-error="wrong" data-success="right">add friend or group</label>
+            </div>
+            <div>
+              <ul>
+                <li *ngFor="let object of allFriendsAndGroups | filter:{name:searchTerm} ">
+                  {{object.name}} <button (click)="invaite(object)">add</button>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+    <div class="row">
+      <div class="col s12">
+        <a> Add Order </a>
+        <a routerLink="/orders/list" routerLinkActive="active" >Cancel</a>
+
       </div>
-      <div class="row">
-        <div class="col s12">
-          This is an inline input field:
-          <div class="input-field inline">
-            <input id="email" type="email" class="validate">
-            <label for="email" data-error="wrong" data-success="right">Email</label>
+    </div>
+
+
+      </form>
+    </div>
+
+
+
+
+
+  </div>
+
+    <!--right side  friends and groups-->
+
+  <div class="col s12 m12 offset-l1 l5 card hoverable">
+
+    <div class="row">
+      <div class="col  s10 m5 l3" *ngFor="let friend of inviated ">
+        <div class="card">
+          <div class="card-image">
+            <img class="img" src="http://lorempixel.com/100/190/nature/6">
+            <span class="card-title">{{friend.name}}</span>
+          </div>
+          <div class="card-action">
+            <a (click)="remove(friend)">remove</a>
           </div>
         </div>
       </div>
-    </form>
+
+    </div>
   </div>
-        
+
+  <div *ngIf="!toggleSelectedRest" class="col s12 m12 offset-l1 l5 card hoverable">
+        <div class="card">
+          <div class="card-image">
+            <img class="img" [src]="'/'+restaurant.menu">
+          </div>
+        </div>
+
 
   </div>
-  <div class="col s12 m12 offset-l1 l5 card hoverable">
-    fol
-  </div>
+
+
+
 </div>

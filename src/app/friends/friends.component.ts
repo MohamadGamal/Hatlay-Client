@@ -15,6 +15,8 @@ export class FriendsComponent implements OnInit {
   private user=null;
   private friend = null;
   private isFriend = false;
+  //// search url 
+  private  URL ="http://localhost:8000/user/";
 
   constructor(private authService:AuthService ,private userService:UserService) { 
 

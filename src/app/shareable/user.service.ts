@@ -11,15 +11,14 @@ export class UserService {
 private user;
 private userFull={};
 private Url = 'http://localhost:8000/user';
- private headers = new Headers({'Content-Type': 'application/json'});
+private headers = new Headers({'Content-Type': 'application/json'});
  
   getUser(){
     return this.user;
   }
   public setUser(user){
 
-
- this.user=user;
+   this.user=user;
   }
   private URL = 'http://localhost:8000/user/';  // URL to web api
 

@@ -6,7 +6,7 @@
   <br />
   <span class="new badge blue">4</span>
 
-<app-user-search (selectedObject)="addSearchResult($event)" ></app-user-search>
+<app-user-search [url]='URL' (selectedObject)="addSearchResult($event)" ></app-user-search>
 
 <div *ngIf="friend" class="chip">
     <img src="http://lorempixel.com/100/190/nature/6" alt="Contact Person">
