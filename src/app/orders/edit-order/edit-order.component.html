@@ -1,0 +1,37 @@
+<div> 
+<p>
+  listorders works!
+              
+</p>
+
+  <table>
+        <thead>
+          <tr>
+             <th>User</th>
+              <th>Meal Price</th>
+              <th>Meal Name</th>
+              <th>Meal Amount</th>
+             
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let meal of order.meals; let i = index;">
+            <td>{{meal.username}}</td>
+            <td>{{meal.price}}</td>
+            <td>{{meal.name}}</td>
+            <td>{{meal?.amount}}</td>
+           
+            <td> <a [routerLink]="['/orders/edit', order._id]">Person</a> </td>
+          </tr>
+            <tr >
+            <td><input type="text" #name></td>
+            <td><input type="number" min=0 #number/></td>
+            <td><input type="number" min=0 #price/></td>
+            <td><input type="text" #comment></td>
+            
+            <td><button (click)="addentry(name.value,number.value,price.value,comment.value)">HEY</button> </td>
+          </tr>
+        </tbody>
+      </table>
+</div> 

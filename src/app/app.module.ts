@@ -32,6 +32,8 @@ import { ListordersComponent } from './orders/listorders/listorders.component';
 import { OrdersService } from './shareable/orders.service';
 import { UniquePipe } from './shareable/unique.pipe';
 import { FilterPipe } from './filter.pipe';
+import { EditOrderComponent } from './orders/edit-order/edit-order.component';
+import { FileuploaderComponent } from './fileuploader/fileuploader.component';
 
 
 @NgModule({
@@ -56,7 +58,11 @@ import { FilterPipe } from './filter.pipe';
 
     UniquePipe,
 
-    FilterPipe
+    FilterPipe,
+
+    EditOrderComponent,
+
+    FileuploaderComponent
 
 
   ],

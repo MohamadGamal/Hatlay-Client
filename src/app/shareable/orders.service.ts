@@ -34,6 +34,22 @@ return this.http.get(this.Url+"/"+id)
       .catch(response => Observable.throw('errrror'));
 
   }
+       addmeal(id,meal) : Observable<any> {
+console.log(this.Url +id+"/meal/");
+console.log(meal)
+    return this.http.post(this.Url +id+"/meal/", meal)
+      .map(response => response.json() ? response.json() : false)
+      .catch(response => Observable.throw('errrror'));
+
+  }
+         adduser(id,user) : Observable<any> {
+console.log(this.Url +id+"/user/");
+console.log(user)
+    return this.http.post(this.Url +id+"/meal/", user)
+      .map(response => response.json() ? response.json() : false)
+      .catch(response => Observable.throw('errrror'));
+
+  }
 
   public addRestaurant(restaurant):Observable<any> {
     return this.http.post('http://localhost:8000/resturant/', restaurant)

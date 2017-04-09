@@ -28,18 +28,10 @@
 
   <input placeholder="Group name"   #gname >
   
+<app-fileuploader [tag]="'image'" [accept]="'image/x-png,image/gif,image/jpeg'" (upload)="uploaded($event)"> </app-fileuploader>
 
-  <div class="file-field input-field">
-      <div class="btn">
-        <span>Image</span>
-        <input type="file" accept="image/x-png,image/gif,image/jpeg" #Image >
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" #fname type="text">
-      </div>
-    </div>
 
-  <button (click)="addgroup(Image.files,gname.value);gname.value= fname.value='';" >Add Group</button>
+  <button (click)="addgroup(gname.value);gname.value= fname.value='';" >Add Group</button>
 
 
 

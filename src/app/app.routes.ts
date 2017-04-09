@@ -10,6 +10,7 @@ import { GroupsComponent    }   from './groups/groups.component';
 import { ProfileComponent   }   from './profile/profile.component';
 import { OrdersComponent    }   from './orders/orders.component';
 import { AddOrderComponent  }   from './orders/add-order/add-order.component';
+import { EditOrderComponent }   from './orders/edit-order/edit-order.component';
 import { ListordersComponent    }   from './orders/listorders/listorders.component';
 
 const appRoutes: Routes = [
@@ -40,6 +41,10 @@ const appRoutes: Routes = [
                 {
                 path: 'add',
                 component:AddOrderComponent
+            },
+             {
+                path: 'edit/:id',
+                component:EditOrderComponent
             }
 
             ]

@@ -10,6 +10,7 @@ export class GroupsComponent implements OnInit {
 private user;
 private userfriends;
 private choosenList=[];
+private img=null;
   constructor(private userservice:UserService,private groupservice:GroupService) {
    // console.log(userservice.refreshUserFull());
 //console.log(userservice.getUserFull());
@@ -29,24 +30,26 @@ if(this.user.friends.length!=i){
     }
 
 }
-addgroup(files,name){
-console.log(files[0],name);
-console.log();
+addgroup(name){
 
-   var reader = new FileReader();
+
+   
   
-  reader.onloadend = (e)=>{
-    console.log(reader.result)
-    
-     this.groupservice.addgroup({name:name,users:this.choosenList.map(n=>n._id),adminId:this.user._id, image:reader.result}).subscribe(
+    var group={name:name,users:this.choosenList.map(n=>n._id),adminId:this.user._id}
+     this.img ? group["image"]= this.img:"";
+   //console.log(group);
+     this.groupservice.addgroup(group).subscribe(
       res=>console.log(res),
       err=>console.log(err)
      );
      
-    }
+   
 
-    reader.readAsDataURL(files[0]);
+}
+uploaded(file){
 
+this.img=file;
+console.log(file);
 
 }
   ngOnInit() {

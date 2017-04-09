@@ -3,7 +3,7 @@ import { Component,SimpleChanges,OnInit,OnChanges } from '@angular/core';
 import { Router }           from '@angular/router';
 import {AuthService}        from './shareable/auth.service'
 import {UserService}        from './shareable/user.service'
-
+import {IfloggedDirective}        from './shareable/iflogged.directive'
 
 @Component({
   selector: 'app-root',

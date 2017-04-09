@@ -22,6 +22,7 @@
             <td>{{order.users.length}}</td>
             <td>{{order.meals|unique:"userId"}}</td>
             <td>{{order.createdate}}</td>
+            <td> <a [routerLink]="['/orders/edit', order._id]">Person</a> </td>
           </tr>
 
         </tbody>
