@@ -4,7 +4,7 @@ import { User }        from '../model/user.model';
 import { UserService }       from './user.service';
 
 import { HttpClientService } from '../shareable/http-client.service'
-import { Subject,Observable} from 'rxjs';
+import { Subject,Observable,BehaviorSubject} from 'rxjs';
 
 @Injectable()
 export class AuthService {
@@ -17,8 +17,9 @@ export class AuthService {
   }
 
 
-  private logger   = new Subject<boolean>();
+  private logger   = new BehaviorSubject<boolean>(false);
   isLoggedIn(): Observable<boolean> {
+     
     return this.logger.asObservable();
   }
 
@@ -27,7 +28,6 @@ export class AuthService {
 
 
   constructor(private http: HttpClientService,private userService:UserService) {
-
 
   }
   doLogin(user:User) {

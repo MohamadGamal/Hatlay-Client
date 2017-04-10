@@ -27,6 +27,25 @@ return this.http.get(this.Url+"/"+id)
 
 
   }
+   removeorder(id) : Observable<any> {
+ 
+
+
+return this.http.delete(this.Url+"/"+id)
+.map(response => response.json()?response.json():false )
+.catch(response=> Observable.throw('errrror'));
+
+
+  }
+   finishorder(id) : Observable<any> {
+ 
+
+return this.http.put(this.Url+"/"+id+"/status/",{status:"Finished"})
+.map(response => response.json()?response.json():false )
+.catch(response=> Observable.throw('errrror'));
+
+
+  }
      addorder(group) : Observable<any> {
 
     return this.http.post(this.Url + "/", group)
@@ -38,6 +57,14 @@ return this.http.get(this.Url+"/"+id)
 console.log(this.Url +id+"/meal/");
 console.log(meal)
     return this.http.post(this.Url +id+"/meal/", meal)
+      .map(response => response.json() ? response.json() : false)
+      .catch(response => Observable.throw('errrror'));
+
+  }
+  deletemeal(id,mid) : Observable<any> {
+console.log(this.Url +id+"/meal/");
+
+    return this.http.delete(this.Url +id+"/meal/"+mid)
       .map(response => response.json() ? response.json() : false)
       .catch(response => Observable.throw('errrror'));
 

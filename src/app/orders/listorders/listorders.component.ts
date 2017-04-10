@@ -12,12 +12,44 @@ private orderslist=[];
 
   ngOnInit() {
     this.ordersservice.getorders(this.userservice.getUser()._id).subscribe(    
-    resp=>{this.orderslist=resp;console.log(resp)},
-    err=>console.log(err)
+          resp=>{this.orderslist=resp;console.log(resp)},
+          err=>console.log(err)
   );
 
 
     
-  }
+}
 
+finishorder(orderid) {
+    this.ordersservice.finishorder(orderid).subscribe(    
+          resp=>{
+           this.ordersservice.getorders(this.userservice.getUser()._id).subscribe(    
+                    resp=>{this.orderslist=resp;console.log(resp)},
+                    err=>console.log(err)
+        );
+
+          
+        },
+          err=>console.log(err)
+  );
+
+
+    
+}
+removeorder(orderid) {
+    this.ordersservice.removeorder(orderid).subscribe(    
+          resp=>{
+           this.ordersservice.getorders(this.userservice.getUser()._id).subscribe(    
+                    resp=>{this.orderslist=resp;console.log(resp)},
+                    err=>console.log(err)
+        );
+
+          
+        },
+          err=>console.log(err)
+  );
+
+
+    
+}
 }

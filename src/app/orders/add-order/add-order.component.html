@@ -28,15 +28,10 @@
 
         <div>
           <div *ngIf="toggleRestaur " class="col s12">
-            <div class="file-field input-field">
-              <div class="btn">
-                <span>File</span>
-                <input type="file"  name="rest_menu" [(ngModel)]="newRestaurant.menu"   >
-              </div>
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
-              </div>
-            </div>
+            
+<app-fileuploader [tag]="'image'" [accept]="'image/x-png,image/gif,image/jpeg'" (upload)="uploaded($event)"> </app-fileuploader>
+
+
             <div class="input-field col s12">
               <input id="rest_name" name="rest_name" [(ngModel)]="newRestaurant.name" type="text" class="validate">
               <label for="rest_name">{{newRestaurant.name}}</label>

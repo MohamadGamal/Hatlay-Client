@@ -12,6 +12,8 @@
               <th>Order Users</th>
               <th>Unique Users</th>
              <th>Creation Date</th>
+             <th>Add Meals</th>
+              <th>Controls</th>
           </tr>
         </thead>
 
@@ -22,7 +24,10 @@
             <td>{{order.users.length}}</td>
             <td>{{order.meals|unique:"userId"}}</td>
             <td>{{order.createdate}}</td>
-            <td> <a [routerLink]="['/orders/edit', order._id]">Person</a> </td>
+            <td> <a [routerLink]="['/orders/edit', order._id]">Add Meals</a> </td>
+            <td *ngIf="order.status=='Active'&&order.adminId==this.userservice.getUser()._id"> <button (click)="finishorder(order?._id)">Finish</button>
+            <button (click)="removeorder(order?._id)">Cancel</button>
+             </td>
           </tr>
 
         </tbody>

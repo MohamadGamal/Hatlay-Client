@@ -3,18 +3,18 @@
         <div class="nav-wrapper">
             <ul>
                 <li routerLink="/home" routerLinkActive="active"><a >Hatlay</a></li>
-                <li *ngIf="logined" routerLink="/orders" routerLinkActive="active" ><a >orders</a></li>
-                <li *ngIf="logined" routerLink="/friends" routerLinkActive="active" ><a >friends</a></li>
-                <li *ngIf="logined" routerLink="/groups" routerLinkActive="active" ><a >groups</a></li>                
+                <li *Iflogged  routerLink="/orders" routerLinkActive="active" ><a >orders</a></li>
+                <li *Iflogged  routerLink="/friends" routerLinkActive="active" ><a >friends</a></li>
+                <li *Iflogged  routerLink="/groups" routerLinkActive="active" ><a >groups</a></li>                
             </ul>
 
             <a   data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <div class="right hide-on-med-and-down">
                 <ul>
-                <li *iflogged  ><a  (click)="logout()" >logout</a></li>
-                <li *ngIf="logined" routerLink="/profile" routerLinkActive="active" ><a >{{user.name}}</a></li>
-                <li *ngIf="!logined" ><a   routerLink="/login" routerLinkActive="active">login</a></li>
-                <li *ngIf="!logined" ><a  routerLink="/register" routerLinkActive="active">register</a></li>
+                <li *Iflogged  ><a  (click)="logout()" >logout</a></li>
+                <li *Iflogged  routerLink="/profile" routerLinkActive="active" ><a >{{user.name}}</a></li>
+                <li *Iflogged="false"  ><a   routerLink="/login" routerLinkActive="active">login</a></li>
+                <li *Iflogged="false"  ><a  routerLink="/register" routerLinkActive="active">register</a></li>
                 </ul>
             </div>
             <div class="right hide-on-med-and-down">

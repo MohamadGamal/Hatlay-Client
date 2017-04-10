@@ -27,18 +27,31 @@ private order={_id:0};
               err=>console.log(err)
         );
   }
+  deleteentry(mealid){
+
+
+
+
+this.ordersservice.deletemeal(this.order._id,mealid).subscribe(
+              (value)=>{value?this.ordersservice.getorder(this.order._id).subscribe(    
+                                resp=>{this.order=resp;console.log(resp)},
+                                err=>console.log(err)
+                              ):console.log(value)},
+
+              (err)=>{console.log(err)}
+)
+
+
+  }
+
+
+
+  
   addentry(mealname,amount,price,comment){
 
 
 
-console.log({
-  username:this.userservice.getUser().name,
-  userId:this.userservice.getUser()._id,
-	amount:amount,
-    name:mealname,
-    price:price	,
-    comment:comment
-});
+
 this.ordersservice.addmeal(this.order._id,{
   username:this.userservice.getUser().name,
   userId:this.userservice.getUser()._id,

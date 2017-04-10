@@ -4,15 +4,23 @@ import {  AuthService } from './auth.service';
   selector: '[Iflogged]'
 })
 export class IfloggedDirective {
-@Input('Iflogged') state:boolean=true;
+@Input('Iflogged') set val(state){
+  // console.log("STATE Before: "+state);
+      state!==false?state==true?"":state=true:"";
+      this.auth.isLoggedIn().subscribe(
+                    e=>{
+                  
+                  //              console.log(" LIVE, STATE : "+state);
+                              (state?e:!e)?this.vcref.createEmbeddedView(this.tref):this.vcref.clear();
+                                  
+                        },
+                  err=>console.log(err)
+      )
+
+
+};
   constructor(private tref:TemplateRef<any>,private vcref:ViewContainerRef,private auth:AuthService) {
-  console.log("IF LOGGED started!, STATE : "+this.state);
-this.auth.isLoggedIn().subscribe((e)=>{
-                  console.log("IF LOGGED LIVES, STATE : "+this.state);
-                  (e==this.state)?vcref.createEmbeddedView(this.tref):vcref.clear();
-          },
-err=>console.log(err)
-)
+
    }
 }
 
