@@ -39,7 +39,20 @@ addgroup(name){
      this.img ? group["image"]= this.img:"";
    //console.log(group);
      this.groupservice.addgroup(group).subscribe(
-      res=>console.log(res),
+      res=>{if(res._id){
+        for (var elem of this.choosenList)
+         { this.userservice.addgrouptouser(elem._id,res._id).subscribe(res=>console.log(res),err=>console.log(err))
+          console.log("PAIR GROUP:",elem._id,res._id)}
+           console.log("PAIR USER:",this.user._id,res._id)
+           console.log("RESID:",res._id)
+           this.userservice.addgrouptouser(this.user._id,res._id).subscribe(res=>{this.initaall()},err=>console.log(err))
+            
+            }
+          
+      else console.log(res)  
+      }
+            
+            ,
       err=>console.log(err)
      );
      
@@ -52,11 +65,19 @@ this.img=file;
 console.log(file);
 
 }
-  ngOnInit() {
+ initaall(){
+
+this.choosenList=[];
+console.log(this.choosenList)
   this.userservice.refreshUserFull().subscribe(
     resp=>{this.userfriends=resp.friends ;this.user=resp;console.log(resp)},
     err=>console.log(err)
   )
+
+
+}
+  ngOnInit() {
+this.initaall();
 }
 
 }

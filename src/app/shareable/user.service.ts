@@ -39,6 +39,15 @@ return this.http.get(this.Url+"/"+this.user._id)
 
 
   }
+    public addgrouptouser(userid,groupid) : Observable<any> {
+ 
+console.log("URL :",this.Url+"/"+userid+"/group"+groupid);
+return this.http.post(this.Url+"/"+userid+"/group",{id:groupid})
+.map(response => response.json()? response.json():false )
+.catch(response=> Observable.throw('errrror'));
+
+
+  }
   public reloadUser(){
     var user = JSON.parse(localStorage.getItem("user"));
     return user ;
