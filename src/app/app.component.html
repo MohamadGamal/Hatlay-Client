@@ -5,16 +5,18 @@
                 <li routerLink="/home" routerLinkActive="active"><a >Hatlay</a></li>
                 <li *ngIf="logined" routerLink="/orders" routerLinkActive="active" ><a >orders</a></li>
                 <li *ngIf="logined" routerLink="/friends" routerLinkActive="active" ><a >friends</a></li>
-                <li *ngIf="logined" routerLink="/groups" routerLinkActive="active" ><a >groups</a></li>                
+                <li *ngIf="logined" routerLink="/groups" routerLinkActive="active" ><a >groups</a></li>
+                             
             </ul>
 
-            <a   data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a   data-activates="mobile-demo" (click)="openMenuModal()" class="button-collapse"><i class="material-icons">menu</i></a>
             <div class="right hide-on-med-and-down">
                 <ul>
                 <li *ngIf="logined"  ><a  (click)="logout()" >logout</a></li>
                 <li *ngIf="logined" routerLink="/profile" routerLinkActive="active" ><a >{{user.name}}</a></li>
                 <li *ngIf="!logined" ><a   routerLink="/login" routerLinkActive="active">login</a></li>
                 <li *ngIf="!logined" ><a  routerLink="/register" routerLinkActive="active">register</a></li>
+                <li  ><a> <span (click)="openModal()" class="button-collapse" class="new badge blue">{{notificationNmber}}</span></a> </li>   
                 </ul>
             </div>
             <div class="right hide-on-med-and-down">
@@ -27,15 +29,44 @@
                 </form>
             </div>
 
-            <ul class="side-nav" id="mobile-demo">
-            <li *ngFor="let n of navList"><a routerLink="/{{n}}" routerLinkActive="active">{{n}}</a></li>
+            <div id="modal1" class="modal"  materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalMenuActions" >
+            <div class="modal-content">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h4>First Names</h4></li>
+                    <li *ngIf="logined" class="collection-item"  ><a  (click)="logout()" >logout</a></li>
+                    <li *ngIf="logined" class="collection-item" routerLink="/profile" routerLinkActive="active" ><a >{{user.name}}</a></li>
+                    <li *ngIf="!logined" class="collection-item" ><a   routerLink="/login" routerLinkActive="active">login</a></li>
+                    <li *ngIf="!logined" class="collection-item" ><a  routerLink="/register" routerLinkActive="active">register</a></li>
 
-            </ul>
+                </ul>
+            </div>
+            </div>
+
+
+
+
         </div>
     </nav>
 </div>
 
-<div class="container">
+
+ 
+
+
+<div class="container" (click)="closeModal()" >
     <router-outlet></router-outlet>
+</div>
+
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal " materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+    <div class="modal-content">
+    <div *ngFor="let message of messages">
+                     {{message.text}}
+                   </div>
+    </div>
+    <div class="modal-footer">
+      <a  (click)="closeModal()" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
 </div>
 

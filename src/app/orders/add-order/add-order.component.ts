@@ -16,6 +16,8 @@ export class AddOrderComponent implements OnInit {
   private restaurant ={};
   private newRestaurant ={};
 
+  private order = {};
+
   private allFriendsAndGroups=[];
 
   private  URL ="http://localhost:8000/resturant/";
@@ -64,6 +66,8 @@ export class AddOrderComponent implements OnInit {
   }
 
   addOrder(){
+
+    console.log(this.order)
 
   }
 

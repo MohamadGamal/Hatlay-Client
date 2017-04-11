@@ -30,6 +30,7 @@ import { AddOrderComponent } from './orders/add-order/add-order.component';
 import { UserComponent } from './shareable/user/user.component';
 import { ListordersComponent } from './orders/listorders/listorders.component';
 import { FilterPipe } from './filter.pipe';
+import { MaterializeModule } from 'angular2-materialize';
 
 
 @NgModule({
@@ -41,7 +42,6 @@ import { FilterPipe } from './filter.pipe';
     FriendsComponent,
     GroupsComponent,
     ProfileComponent,
-
     SinglegroupComponent,
     IfloggedDirective,
     ObjectmapperPipe,
@@ -58,6 +58,7 @@ import { FilterPipe } from './filter.pipe';
     BrowserModule,
     FormsModule,
     HttpModule,
+    MaterializeModule,
     AppRoutingModule  /// routes from another file
   ],
   providers: [UserService,AuthService,HttpClientService,GroupService],
