@@ -46,9 +46,9 @@ return this.http.put(this.Url+"/"+id+"/status/",{status:"Finished"})
 
 
   }
-     addorder(group) : Observable<any> {
+     addorder(order) : Observable<any> {
 
-    return this.http.post(this.Url + "/", group)
+    return this.http.post(this.Url + "/", order)
       .map(response => response.json() ? response.json() : false)
       .catch(response => Observable.throw('errrror'));
 

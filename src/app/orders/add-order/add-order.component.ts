@@ -13,10 +13,10 @@ export class AddOrderComponent implements OnInit {
   private user;
   private searchTerm;
   private inviated=[];
-  private restaurant ={};
+  private restaurant ;
   private newRestaurant ={};
   private resturantimage;
-private order ={name:""};
+private order ={name:"",time:""};
   private allFriendsAndGroups=[];
 
   private  URL ="http://localhost:8000/resturant/";
@@ -90,16 +90,45 @@ this.newRestaurant['menu']=menu;
 
 }
   addOrder(){
+    
     var endjob={};
-    for ( var i of this.allFriendsAndGroups.filter((val)=>val.difftype=="Groups") )
-       {        let user=this.user.friends.filter((val)=>val._id==i)[0]   
-                endjob[user._id]={}
+    endjob[this.user._id]={userId:this.user._id,name:this.user.name}
+     for ( var myuser of this.inviated.filter((val)=>val.difftype=="Friends") )
+       { 
+         console.log("Friend",myuser)
+
+           }
+    for ( var i of this.inviated.filter((val)=>val.difftype=="Groups") )
+       { 
+         let myuser={}       
+         for (var us of i.users){
+                console.log(i);
+                let myuser=this.user.friends.filter((val)=>val._id==us)[0] 
+                console.log(myuser)
+                endjob[myuser._id]={userId:myuser._id,name:myuser.name,groupId:i._id,groupname:i.name}
+              }
 
 
 
        }
+let users=[];
+for( var user in endjob)
+  users.push(endjob[user]);
+
+
+let myorder={
+name:this.order.name,
+time:this.order.time,
+users:users,
+resturant:this.restaurant._id,
+adminId:this.user._id
+
+
+}
+console.log(myorder);
+this.orderService.addorder(myorder).subscribe((resp)=>console.log(resp),(err)=>console.log(err))
 console.log(this.order);
-console.log(this.inviated)
+console.log("Ejob",endjob)
   }
 
   
