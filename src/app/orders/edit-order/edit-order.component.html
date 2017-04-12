@@ -1,0 +1,43 @@
+<div> 
+<p>
+  listorders works!
+              
+</p>
+
+  <table>
+        <thead>
+          <tr>
+             <th>User</th>
+              <th>Meal Name</th>
+              <th>Meal Price</th>
+             
+              <th>Meal Amount</th>
+
+              <th> Comments</th>
+             
+             
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let meal of order.meals; let i = index;">
+            <td>{{meal.username}}</td>
+            <td>{{meal.price}}</td>
+            <td>{{meal.name}}</td>
+            <td>{{meal?.amount}}</td>
+           <td>{{meal?.comment}}</td>
+           
+            <td> <button *ngIf="meal.userId==userservice.getUser()._id" (click)="deleteentry(meal._id)">Delete Meal</button>  </td>
+          </tr>
+            <tr >
+              <td></td>
+            <td><input type="text" placeholder="Meal Name"  #name></td>
+            <td><input type="number" placeholder="Amount" min=0 #number/></td>
+            <td><input type="number" placeholder="Price" min=0 #price/></td>
+            <td><input type="text" placeholder="Comment" #comment></td>
+            
+            <td><button (click)="addentry(name.value,number.value,price.value,comment.value)">Add Meal</button> </td>
+          </tr>
+        </tbody>
+      </table>
+</div> 

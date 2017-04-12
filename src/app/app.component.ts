@@ -6,6 +6,8 @@ import { AuthService } from './shareable/auth.service'
 import { UserService } from './shareable/user.service'
   import {MaterializeAction} from 'angular2-materialize';
 
+import {IfloggedDirective}        from './shareable/iflogged.directive'
+
 @Component({
   selector   :   'app-root'              ,
   templateUrl:   './app.component.html'  ,

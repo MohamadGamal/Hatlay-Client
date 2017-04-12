@@ -5,6 +5,7 @@
             <div class="left hide-on-med-and-down">
             <ul  >
                 <li routerLink="/home" routerLinkActive="active"><a >Hatlay</a></li>
+<!--<<<<<<< HEAD-->
                 <li *ngIf="logined" routerLink="/orders" routerLinkActive="active" ><a >orders</a></li>
                 <li *ngIf="logined" routerLink="/friends" routerLinkActive="active" ><a >friends</a></li>
                 <li *ngIf="logined" routerLink="/groups" routerLinkActive="active" ><a >groups</a></li>                             
@@ -24,6 +25,11 @@
                     <a  class="button-collapse" ><i class="material-icons">add_alert</i></a>
                 </li>
                 <li   ><a (click)="openMenuModal()" class="button-collapse" ><i class="material-icons">menu</i></a></li>                             
+<!--=======
+                <li *Iflogged  routerLink="/orders" routerLinkActive="active" ><a >orders</a></li>
+                <li *Iflogged  routerLink="/friends" routerLinkActive="active" ><a >friends</a></li>
+                <li *Iflogged  routerLink="/groups" routerLinkActive="active" ><a >groups</a></li>                
+>>>>>>> 9a3388c1636320b93899d23c264bb931b1ec7e3c-->
             </ul>
 
             <!--<a   data-activates="mobile-demo" routerLink="/home" routerLinkActive="active" ><i class="material-icons">launch</i></a>
@@ -33,11 +39,18 @@
 
             <div class="right hide-on-med-and-down">
                 <ul>
+<!--<<<<<<< HEAD-->
                 <li *ngIf="logined"  ><a  (click)="logout()" >logout</a></li>
                 <li *ngIf="logined" routerLink="/profile" routerLinkActive="active" ><a >{{user.name}}</a></li>
                 <li *ngIf="!logined" ><a   routerLink="/login" routerLinkActive="active">login</a></li>
                 <li *ngIf="!logined" ><a  routerLink="/register" routerLinkActive="active">register</a></li>
                 <li  ><a> <span (click)="openModal()" class="button-collapse" class="new badge blue">{{notificationNmber}}</span></a> </li>   
+<!--=======
+                <li *Iflogged  ><a  (click)="logout()" >logout</a></li>
+                <li *Iflogged  routerLink="/profile" routerLinkActive="active" ><a >{{user.name}}</a></li>
+                <li *Iflogged="false"  ><a   routerLink="/login" routerLinkActive="active">login</a></li>
+                <li *Iflogged="false"  ><a  routerLink="/register" routerLinkActive="active">register</a></li>
+>>>>>>> 9a3388c1636320b93899d23c264bb931b1ec7e3c-->
                 </ul>
             </div>
             <div class="right hide-on-med-and-down">

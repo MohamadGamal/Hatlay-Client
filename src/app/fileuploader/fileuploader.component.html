@@ -1,0 +1,10 @@
+
+  <div class="file-field input-field">
+      <div class="btn">
+        <span>{{tag}}</span>
+        <input type="file" [accept]="accept" (change)="onupload($event)" >
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" [(ngModel)]="inputname" type="text">
+      </div>
+    </div>

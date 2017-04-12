@@ -10,6 +10,7 @@ export class GroupsComponent implements OnInit {
 private user;
 private userfriends;
 private choosenList=[];
+private img=null;
   constructor(private userservice:UserService,private groupservice:GroupService) {
    // console.log(userservice.refreshUserFull());
 //console.log(userservice.getUserFull());
@@ -29,31 +30,54 @@ if(this.user.friends.length!=i){
     }
 
 }
-addgroup(files,name){
-console.log(files[0],name);
-console.log();
+addgroup(name){
 
-   var reader = new FileReader();
+
+   
   
-  reader.onloadend = (e)=>{
-    console.log(reader.result)
-    
-     this.groupservice.addgroup({name:name,users:this.choosenList.map(n=>n._id),adminId:this.user._id, image:reader.result}).subscribe(
-      res=>console.log(res),
+    var group={name:name,users:this.choosenList.map(n=>n._id),adminId:this.user._id}
+     this.img ? group["image"]= this.img:"";
+   //console.log(group);
+     this.groupservice.addgroup(group).subscribe(
+      res=>{if(res._id){
+        for (var elem of this.choosenList)
+         { this.userservice.addgrouptouser(elem._id,res._id).subscribe(res=>console.log(res),err=>console.log(err))
+          console.log("PAIR GROUP:",elem._id,res._id)}
+           console.log("PAIR USER:",this.user._id,res._id)
+           console.log("RESID:",res._id)
+           this.userservice.addgrouptouser(this.user._id,res._id).subscribe(res=>{this.initaall()},err=>console.log(err))
+            
+            }
+          
+      else console.log(res)  
+      }
+            
+            ,
       err=>console.log(err)
      );
      
-    }
-
-    reader.readAsDataURL(files[0]);
-
+   
 
 }
-  ngOnInit() {
+uploaded(file){
+
+this.img=file;
+console.log(file);
+
+}
+ initaall(){
+
+this.choosenList=[];
+console.log(this.choosenList)
   this.userservice.refreshUserFull().subscribe(
     resp=>{this.userfriends=resp.friends ;this.user=resp;console.log(resp)},
     err=>console.log(err)
   )
+
+
+}
+  ngOnInit() {
+this.initaall();
 }
 
 }
