@@ -16,11 +16,14 @@ export class SocketIOServiceService {
   }
 
  getMessages() { 
+   console.log("get Message");
    let observable = new Observable(
                     observer => 
                           { 
+                             console.log("token ::"+ localStorage.getItem('token'));
+                            
                               this.socket = io (this.url,{ query: 'token=' + localStorage.getItem('token')});
-
+                              console.log(this.socket);
                               this.socket.on('message', (data) => 
                                         { 
                                           observer.next(data); 

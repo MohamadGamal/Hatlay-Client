@@ -29,7 +29,11 @@ export class AppComponent implements OnInit, OnChanges {
     , private userService: UserService, private socketIOServiceService: SocketIOServiceService) {
     this.authService.isLoggedIn().subscribe(loggedIn => {
       this.logined = loggedIn;
-      if(this.logined){
+      this.user = this.userService.getUser();
+        console.log(this.userService.getUser());
+
+      if(this.user){
+              console.log("start ")
               this.connection = this.socketIOServiceService
                           .getMessages()
                           .subscribe(message => 
@@ -39,10 +43,10 @@ export class AppComponent implements OnInit, OnChanges {
                             });
         
       }else{
-           this.connection.unsubscribe();        
+            if(this.connection)
+             this.connection.unsubscribe();        
       }
-      this.user = this.userService.getUser();
-      //  console.log(this.userService.getUser());
+
     });
   }
 
@@ -64,10 +68,6 @@ export class AppComponent implements OnInit, OnChanges {
     this.message = ''; } 
   
   ngOnInit() { 
-    this.connection = this.socketIOServiceService
-                          .getMessages()
-                          .subscribe(message => 
-                            { this.messages.push(message); });
   } 
 
   ngOnDestroy() { this.connection.unsubscribe(); }

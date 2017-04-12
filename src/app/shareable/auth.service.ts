@@ -19,7 +19,7 @@ export class AuthService {
 
   private logger   = new BehaviorSubject<boolean>(false);
   isLoggedIn(): Observable<boolean> {
-     
+    console.log("change in loggedIn");
     return this.logger.asObservable();
   }
 
@@ -40,6 +40,9 @@ export class AuthService {
               this.loggedIn = true;
               this.userService.setUser(res.json().user);
               this.logger.next(this.loggedIn);
+              console.log(res.json().user);
+              console.log(this.userService.getUser());
+
               return true;              
             }else{
               return false;
