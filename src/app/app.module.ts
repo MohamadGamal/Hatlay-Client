@@ -36,6 +36,7 @@ import { MaterializeModule } from 'angular2-materialize';
 
 import { EditOrderComponent } from './orders/edit-order/edit-order.component';
 import { FileuploaderComponent } from './fileuploader/fileuploader.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
@@ -63,7 +64,9 @@ import { FileuploaderComponent } from './fileuploader/fileuploader.component';
 
     EditOrderComponent,
 
-    FileuploaderComponent
+    FileuploaderComponent,
+
+    MenuComponent
 
 
   ],

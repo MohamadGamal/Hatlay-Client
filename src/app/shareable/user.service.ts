@@ -20,13 +20,20 @@ private headers = new Headers({'Content-Type': 'application/json'});
 
    this.user=user;
   }
-  private URL = 'http://localhost:8000/user/';  // URL to web api
-
   constructor(private http: HttpClientService) {
 
 
   }
-    public getUserFull(){
+  
+  public clearNotification(){
+    return this.http
+          .get(this.Url+"/notification")
+          .toPromise()
+          .then(res =>true)
+          .catch(res => false );
+  }
+  
+  public getUserFull(){
        return this.userFull;
     }
 
@@ -39,7 +46,7 @@ return this.http.get(this.Url+"/"+this.user._id)
 
 
   }
-    public addgrouptouser(userid,groupid) : Observable<any> {
+public addgrouptouser(userid,groupid) : Observable<any> {
  
 console.log("URL :",this.Url+"/"+userid+"/group"+groupid);
 return this.http.post(this.Url+"/"+userid+"/group",{id:groupid})
@@ -55,14 +62,14 @@ return this.http.post(this.Url+"/"+userid+"/group",{id:groupid})
 
   public follow(id){
     return this.http
-          .get(this.URL+"/friend/"+id)
+          .get(this.Url+"/friend/"+id)
           .toPromise()
           .then(res =>true)
           .catch(res => false );
   }
   public unfollow(id){
     return this.http
-          .delete(this.URL+"/friend/"+id)
+          .delete(this.Url+"/friend/"+id)
           .toPromise()
           .then(res =>true)
           .catch(res => false );
