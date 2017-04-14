@@ -33,7 +33,7 @@ import { OrdersService } from './shareable/orders.service';
 import { UniquePipe } from './shareable/unique.pipe';
 import { FilterPipe } from './filter.pipe';
 import { MaterializeModule } from 'angular2-materialize';
-
+import { RouteguardService } from './shareable/routeguard.service';
 import { EditOrderComponent } from './orders/edit-order/edit-order.component';
 import { FileuploaderComponent } from './fileuploader/fileuploader.component';
 
@@ -87,7 +87,7 @@ import { MenuComponent } from './menu/menu.component';
     MaterializeModule,
     AppRoutingModule  /// routes from another file
   ],
-  providers: [UserService,AuthService,HttpClientService,GroupService,OrdersService],
+  providers: [UserService,AuthService,HttpClientService,GroupService,OrdersService,RouteguardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -96,7 +96,7 @@ this.newRestaurant['menu']=menu;
     endjob[this.user._id]={userId:this.user._id,name:this.user.name}
      for ( var myuser of this.inviated.filter((val)=>val.difftype=="Friends") )
        { 
-         console.log("Friend",myuser)
+         endjob[myuser._id]={userId:myuser._id,name:myuser.name}
 
            }
     for ( var i of this.inviated.filter((val)=>val.difftype=="Groups") )
