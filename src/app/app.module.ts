@@ -36,6 +36,8 @@ import { MaterializeModule } from 'angular2-materialize';
 
 import { EditOrderComponent } from './orders/edit-order/edit-order.component';
 import { FileuploaderComponent } from './fileuploader/fileuploader.component';
+import { MinusPipe } from './shareable/minus.pipe';
+import { PropertymatcherPipe } from './shareable/propertymatcher.pipe';
 
 
 @NgModule({
@@ -63,7 +65,11 @@ import { FileuploaderComponent } from './fileuploader/fileuploader.component';
 
     EditOrderComponent,
 
-    FileuploaderComponent
+    FileuploaderComponent,
+
+    MinusPipe,
+
+    PropertymatcherPipe
 
 
   ],

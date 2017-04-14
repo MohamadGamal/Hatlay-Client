@@ -18,6 +18,15 @@ return this.http.get(this.Url+"/user/"+id)
 
 
   }
+         getnotifs(arrf) : Observable<any> {
+
+
+return this.http.get(this.Url+"/notifs/"+(arrf.toString()).replace(/([^,]+)/g,"\"$1\"").replace(/(.+)/g,"[$1]"))
+.map(response => response.json()?response.json():false )
+.catch(response=> Observable.throw('errrror'));
+
+
+  }
  getorder(id) : Observable<any> {
  
 
@@ -41,6 +50,15 @@ return this.http.delete(this.Url+"/"+id)
  
 
 return this.http.put(this.Url+"/"+id+"/status/",{status:"Finished"})
+.map(response => response.json()?response.json():false )
+.catch(response=> Observable.throw('errrror'));
+
+
+  }
+    finalizeorder(id) : Observable<any> {
+ 
+
+return this.http.get(this.Url+"/"+id+"/finalize/")
 .map(response => response.json()?response.json():false )
 .catch(response=> Observable.throw('errrror'));
 
