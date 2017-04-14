@@ -12,6 +12,7 @@ import { OrdersComponent    }   from './orders/orders.component';
 import { AddOrderComponent  }   from './orders/add-order/add-order.component';
 import { EditOrderComponent }   from './orders/edit-order/edit-order.component';
 import { ListordersComponent    }   from './orders/listorders/listorders.component';
+import { MenuComponent } from './menu/menu.component';
 
 const appRoutes: Routes = [
 { 
@@ -28,6 +29,9 @@ const appRoutes: Routes = [
 {
     path: 'groups',
     component: GroupsComponent
+},{
+    path: 'menu',
+    component: MenuComponent
 },
 {
     path: 'orders',

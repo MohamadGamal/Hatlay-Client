@@ -36,8 +36,12 @@ import { MaterializeModule } from 'angular2-materialize';
 
 import { EditOrderComponent } from './orders/edit-order/edit-order.component';
 import { FileuploaderComponent } from './fileuploader/fileuploader.component';
+
 import { MinusPipe } from './shareable/minus.pipe';
 import { PropertymatcherPipe } from './shareable/propertymatcher.pipe';
+
+import { MenuComponent } from './menu/menu.component';
+
 
 
 @NgModule({
@@ -69,7 +73,10 @@ import { PropertymatcherPipe } from './shareable/propertymatcher.pipe';
 
     MinusPipe,
 
-    PropertymatcherPipe
+    PropertymatcherPipe,
+
+    MenuComponent
+
 
 
   ],

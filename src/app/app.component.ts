@@ -4,9 +4,9 @@ import { SocketIOServiceService } from './socket-ioservice.service'
 import { Router } from '@angular/router';
 import { AuthService } from './shareable/auth.service'
 import { UserService } from './shareable/user.service'
-  import {MaterializeAction} from 'angular2-materialize';
+import { MaterializeAction } from 'angular2-materialize';
 
-import {IfloggedDirective}        from './shareable/iflogged.directive'
+import { IfloggedDirective }   from './shareable/iflogged.directive'
 
 @Component({
   selector   :   'app-root'              ,
@@ -77,6 +77,8 @@ export class AppComponent implements OnInit, OnChanges {
 
   openModal() {
     this.notificationNmber=0;
+    console.log(this.userService.clearNotification());
+
     this.modalActions.emit({action:"modal",params:['open']});
   }
   closeModal() {

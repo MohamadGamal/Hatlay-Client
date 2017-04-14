@@ -11,20 +11,24 @@
                 <li *ngIf="logined" routerLink="/groups" routerLinkActive="active" ><a >groups</a></li>                             
             </ul>
             </div>
-            <!--<div class=" hide-on-med-and-up">
-            <ul >
-                <li  routerLink="/home" routerLinkActive="active" ><a>wwwwwwwwww</a></li>
-            </ul>
+            <div class="hide-on-large-only">
+
+                <a  routerLink="/home" routerLinkActive="active"  class="button-collapse" ><i class="material-icons">launch</i></a>
+                <a   routerLink="/orders" routerLinkActive="active" class="button-collapse" ><i class="material-icons">label_outline</i></a>
+                <a  (click)="openModal()"   
+                      class="button-collapse" ><i class="material-icons">add_alert</i></a>
                 
-            </div>-->
+               <a (click)="openMenuModal()" class="button-collapse" ><i class="material-icons">menu</i></a>                             
+                
+            </div>
 
             <ul >
-                <li  routerLink="/home" routerLinkActive="active" ><a class="button-collapse" ><i class="material-icons">launch</i></a></li>
+                <!--<li  routerLink="/home" routerLinkActive="active" ><a class="button-collapse" ><i class="material-icons">launch</i></a></li>
                 <li  routerLink="/orders" routerLinkActive="active" ><a class="button-collapse" ><i class="material-icons">label_outline</i></a></li>
                 <li  (click)="openModal()"   >
                     <a  class="button-collapse" ><i class="material-icons">add_alert</i></a>
                 </li>
-                <li   ><a (click)="openMenuModal()" class="button-collapse" ><i class="material-icons">menu</i></a></li>                             
+                <li   ><a (click)="openMenuModal()" class="button-collapse" ><i class="material-icons">menu</i></a></li>                             -->
 <!--=======
                 <li *Iflogged  routerLink="/orders" routerLinkActive="active" ><a >orders</a></li>
                 <li *Iflogged  routerLink="/friends" routerLinkActive="active" ><a >friends</a></li>
@@ -63,18 +67,6 @@
                 </form>
             </div>
 
-            <div id="modal1" class="modal"  materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalMenuActions" >
-            <div class="modal-content">
-                <ul class="collection with-header">
-                    <li class="collection-header"><h4>First Names</h4></li>
-                    <li *ngIf="logined" class="collection-item"  ><a  (click)="logout()" >logout</a></li>
-                    <li *ngIf="logined" class="collection-item" routerLink="/profile" routerLinkActive="active" ><a >{{user.name}}</a></li>
-                    <li *ngIf="!logined" class="collection-item" ><a   routerLink="/login" routerLinkActive="active">login</a></li>
-                    <li *ngIf="!logined" class="collection-item" ><a  routerLink="/register" routerLinkActive="active">register</a></li>
-
-                </ul>
-            </div>
-            </div>
 
 
 
@@ -87,7 +79,7 @@
  
 
 
-<div class="container" (click)="closeModal()" >
+<div class="container" >
     <router-outlet></router-outlet>
 </div>
 
@@ -104,3 +96,18 @@
     </div>
 </div>
 
+
+
+
+            <div id="modal1" class="side-nav"  materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalMenuActions" >
+            <div class="modal-content">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h4>First Names</h4></li>
+                    <li *ngIf="logined" class="collection-item"  ><a  (click)="logout()" >logout</a></li>
+                    <li *ngIf="logined" class="collection-item" routerLink="/profile" routerLinkActive="active" ><a >{{user.name}}</a></li>
+                    <li *ngIf="!logined" class="collection-item" ><a   routerLink="/login" routerLinkActive="active">login</a></li>
+                    <li *ngIf="!logined" class="collection-item" ><a  routerLink="/register" routerLinkActive="active">register</a></li>
+
+                </ul>
+            </div>
+            </div>
