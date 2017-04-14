@@ -10,7 +10,7 @@ import { HttpClientService } from '../shareable/http-client.service'
 export class UserService {
 private user;
 private userFull={};
-private Url = 'http://localhost:8000/user';
+private Url = 'https://hatlay.herokuapp.com/';
 private headers = new Headers({'Content-Type': 'application/json'});
  
   getUser(){
@@ -70,6 +70,16 @@ return this.http.post(this.Url+"/"+userid+"/group",{id:groupid})
   public unfollow(id){
     return this.http
           .delete(this.Url+"/friend/"+id)
+          .toPromise()
+          .then(res =>true)
+          .catch(res => false );
+
+  }
+
+  public updateUser(user){
+    console.log(user);
+  return this.http
+          .put(this.Url+"/",user)
           .toPromise()
           .then(res =>true)
           .catch(res => false );

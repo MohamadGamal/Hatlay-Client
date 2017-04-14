@@ -16,7 +16,7 @@ export class FriendsComponent implements OnInit {
   private friend = null;
   private isFriend = false;
   //// search url 
-  private  URL ="http://localhost:8000/user/";
+  private  URL ="https://hatlay.herokuapp.com/user/";
 
   constructor(private authService:AuthService ,private userService:UserService) { 
 

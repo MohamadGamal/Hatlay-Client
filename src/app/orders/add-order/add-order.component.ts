@@ -20,7 +20,7 @@ export class AddOrderComponent implements OnInit {
   private order ={name:"",time:""};
   private allFriendsAndGroups=[];
 
-  private  URL ="http://localhost:8000/resturant/";
+  private  URL ="https://hatlay.herokuapp.com/resturant/";
   private toggleRestaur= false;
   private toggleSelectedRest = true;
   constructor(private userService: UserService ,private orderService:OrdersService) { 

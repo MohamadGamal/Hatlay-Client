@@ -2,21 +2,27 @@
   <div class="col s12 m5 l4">
     <div class="card">
       <div class="card-image">
-        <img src="http://demo.geekslabs.com/materialize/v2.3/layout03/images/gallary/3.jpg">
-        <span class="card-title">Card Title</span>
+        <img src="{{user.image}}">
       </div>
       <div class="card-content">
+        <div *ngIf="!editMode"  >
+          <span style="font-size:32px" >{{user.name}}</span><a><i class="material-icons">edit</i></a>
+        </div>
+        <div *ngIf="editMode"  >
+          <input type="text" name="name" [(ngModel)]="name">
+          <app-fileuploader [tag]="'image'" [accept]="'image/x-png,image/gif,image/jpeg'" (upload)="uploaded($event)"> </app-fileuploader>          
+          <button value="save" (click)="saveChange()" >save</button>
+        </div>
+        <div *ngIf="progress"  >
 
-        <a href="#">Change Picture</a>
+        </div>
+        
+        <div>
 
-
+        </div>
       </div>
-
     </div>
   </div>
-
-
-
   <div class="col s12 m7 l8">
     <div class="card">
       <div class="card-content">
@@ -28,7 +34,7 @@
                 <i style="font-size:2in" class="material-icons">group_work</i>
               </div>
               <div class="card-content">
-                <h2 class="center">25</h2>
+                <h2 class="center">{{user.groups.length}}</h2>
               </div>
             </div>
           </div>
@@ -39,7 +45,7 @@
                 <i style="font-size:2in" class="material-icons">supervisor_account</i>
               </div>
               <div class="card-content">
-                <h2 class="center">25</h2>
+                <h2 class="center">{{user.friends.length}}</h2>
               </div>
             </div>
           </div>
@@ -50,7 +56,7 @@
                 <i style="font-size:2in" class="material-icons">done_all</i>
               </div>
               <div class="card-content">
-                <h2 class="center">25</h2>
+                <h2 class="center">{{user.groups.length}}</h2>
               </div>
             </div>
           </div>
@@ -64,8 +70,4 @@
 
 
 
-</div>
-
-<div class="circle" style="background-color: red" >
-  25
 </div>

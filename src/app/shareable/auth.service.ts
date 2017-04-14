@@ -24,7 +24,7 @@ export class AuthService {
   }
 
 
-  private postsUrl = 'http://localhost:8000/user';  // URL to web api
+  private postsUrl = 'https://hatlay.herokuapp.com/user';  // URL to web api
 
 
   constructor(private http: HttpClientService,private userService:UserService) {

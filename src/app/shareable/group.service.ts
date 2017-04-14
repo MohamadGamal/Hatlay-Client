@@ -3,7 +3,7 @@ import { HttpClientService } from '../shareable/http-client.service'
 import { Subject,Observable} from 'rxjs';
 @Injectable()
 export class GroupService {
-  private Url = 'http://localhost:8000/group/'
+  private Url = 'https://hatlay.herokuapp.com/group/'
   constructor(private http: HttpClientService){
   }
   public addgroup(group) : Observable<any> {
