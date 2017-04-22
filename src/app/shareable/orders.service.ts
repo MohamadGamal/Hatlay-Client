@@ -101,7 +101,8 @@ console.log(user)
   }
 
   public addRestaurant(restaurant):Observable<any> {
-    return this.http.post(this.Url+'resturant/', restaurant)
+    console.log(AppSettings.API_ENDPOINT+'/resturant/')
+    return this.http.post(AppSettings.API_ENDPOINT+'resturant/', restaurant)
       .map(response => response.json() ? response.json() : false)
       .catch(response => Observable.throw('errrror'));
 
