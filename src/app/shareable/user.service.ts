@@ -1,19 +1,22 @@
-import { Injectable } from '@angular/core';
-import { Headers } from '@angular/http';
-import { AuthService } from './auth.service';
 
-import { Observable } from 'rxjs';
+import { Injectable  } from '@angular/core';
+import { Headers     } from '@angular/http';
+import { AuthService } from './auth.service';
+import { AppSettings } from '../app.setting';
+
+import { Observable  } from 'rxjs';
 
 import { HttpClientService } from '../shareable/http-client.service'
 
 @Injectable()
 export class UserService {
-  private user;
-  private userFull = {};
-  private Url = 'http://localhost:8000/user';
-  private headers = new Headers({ 'Content-Type': 'application/json' });
 
-  getUser() {
+private user;
+private userFull={};
+private Url = AppSettings.API_ENDPOINT+'user';
+private headers = new Headers({'Content-Type': 'application/json'});
+ 
+  getUser(){
     return this.user;
   }
   public setUser(user) {
@@ -55,11 +58,13 @@ export class UserService {
 
 
   }
+
   public removegroupfromuser(userid, groupid): Observable<any> {
 
     return this.http.delete(this.Url + "/" + userid  + "/group/" + groupid)
       .map(response => response.json() ? response.json() : false)
       .catch(response => Observable.throw('errrror'));
+
 
 
   }
@@ -81,6 +86,16 @@ export class UserService {
       .toPromise()
       .then(res => true)
       .catch(res => false);
+
+  }
+
+  public updateUser(user){
+    console.log(user);
+  return this.http
+          .put(this.Url+"/",user)
+          .toPromise()
+          .then(res =>true)
+          .catch(res => false );
 
   }
 

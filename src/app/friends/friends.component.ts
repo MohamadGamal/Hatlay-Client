@@ -3,6 +3,7 @@ import { AuthService}        from '../shareable/auth.service'
 import { Router }            from '@angular/router';
 import { User }              from '../model/user.model';
 import { UserService}        from '../shareable/user.service'
+import { AppSettings }       from '../app.setting'
 
 @Component({
   selector: 'app-friends',
@@ -16,7 +17,7 @@ export class FriendsComponent implements OnInit {
   private friend = null;
   private isFriend = false;
   //// search url 
-  private  URL ="http://localhost:8000/user/";
+  private  URL =AppSettings.API_ENDPOINT+"user/";
 
   constructor(private authService:AuthService ,private userService:UserService) { 
 

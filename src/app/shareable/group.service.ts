@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClientService } from '../shareable/http-client.service'
 import { Subject, Observable } from 'rxjs';
+import { AppSettings} from '../app.setting'
 
 import { UserService } from './user.service'
 @Injectable()
 export class GroupService {
-  private Url = 'http://localhost:8000/group/'
+  private Url = AppSettings.API_ENDPOINT+'group/'
+
   constructor(private http: HttpClientService, private userservice: UserService) {
   }
   public addgroup(group): Observable<any> {
@@ -23,7 +25,6 @@ export class GroupService {
     return this.http.get(this.Url + "/" + groupid)
       .map(response => response.json() ? response.json() : false)
       .catch(response => Observable.throw('errrror'));
-
 
   }
 

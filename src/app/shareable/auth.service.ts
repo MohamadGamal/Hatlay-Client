@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../model/user.model';
 
 import { UserService } from './user.service';
+import { AppSettings } from '../app.setting';
 
 import { HttpClientService } from '../shareable/http-client.service'
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
@@ -24,7 +25,7 @@ export class AuthService {
   }
 
 
-  private postsUrl = 'http://localhost:8000/user';  // URL to web api
+  private postsUrl = AppSettings.API_ENDPOINT+'user';  // URL to web api
 
 
   constructor(private http: HttpClientService, private userService: UserService) {

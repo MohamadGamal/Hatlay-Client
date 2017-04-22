@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService }        from '../../shareable/user.service'
 import { FilterPipe }         from '../../filter.pipe'
 import { OrdersService}       from '../../shareable/orders.service'
+import { AppSettings }        from '../../app.setting'
 
 @Component({
   selector: 'app-add-order',
@@ -20,7 +21,7 @@ export class AddOrderComponent implements OnInit {
   private order ={name:"",time:""};
   private allFriendsAndGroups=[];
 
-  private  URL ="http://localhost:8000/resturant/";
+  private  URL =AppSettings.API_ENDPOINT+"resturant/";
   private toggleRestaur= false;
   private toggleSelectedRest = true;
   constructor(private userService: UserService ,private orderService:OrdersService) { 

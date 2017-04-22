@@ -3,10 +3,14 @@ import { HttpClientService } from '../shareable/http-client.service'
 
 import { UserService } from '../shareable/user.service'
 import { Subject,Observable} from 'rxjs';
+import { AppSettings } from '../app.setting';
+
+
 
 @Injectable()
 export class OrdersService {
-  private Url = 'http://localhost:8000/order/'
+  
+  private Url = AppSettings.API_ENDPOINT+'order';
   constructor(private http: HttpClientService) { }
 
        getorders(id) : Observable<any> {
@@ -97,7 +101,7 @@ console.log(user)
   }
 
   public addRestaurant(restaurant):Observable<any> {
-    return this.http.post('http://localhost:8000/resturant/', restaurant)
+    return this.http.post(this.Url+'resturant/', restaurant)
       .map(response => response.json() ? response.json() : false)
       .catch(response => Observable.throw('errrror'));
 
