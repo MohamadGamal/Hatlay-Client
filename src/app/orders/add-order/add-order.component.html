@@ -18,7 +18,7 @@
 
         <div class="row" *ngIf="!toggleRestaur && toggleSelectedRest ">
           <app-user-search class="col s8" [url]='URL' (selectedObject)="addSearchResult($event)"></app-user-search>
-          <div class="col s4"> <button (click)="toggleRestaur=!toggleRestaur"> Add new</button></div>
+          <div class="col s4"> <button (click)="toggleRestaur=!toggleRestaur;console.log(toggleRestaur)"> Add new</button></div>
         </div>
         <div class="row" *ngIf="!toggleSelectedRest">
           <div class="col s8" ><label > {{restaurant?.name}} </label></div>
