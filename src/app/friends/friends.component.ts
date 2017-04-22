@@ -64,6 +64,7 @@ export class FriendsComponent implements OnInit {
         if(this.userService.follow(friend._id)){
           this.friend=null;
           this.user.friends.push(friend);
+          console.log("friends now ::"+this.user.friends.length);
         }else{
               console.log("error");      
         }
