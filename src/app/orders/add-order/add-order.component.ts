@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService }        from '../../shareable/user.service'
 import { FilterPipe }         from '../../filter.pipe'
 import { OrdersService}       from '../../shareable/orders.service'
+import { AppSettings }        from '../../app.setting'
 
 @Component({
   selector: 'app-add-order',
@@ -20,7 +21,7 @@ export class AddOrderComponent implements OnInit {
   private order ={name:"",time:""};
   private allFriendsAndGroups=[];
 
-  private  URL ="https://hatlay.herokuapp.com/resturant/";
+  private  URL =AppSettings.API_ENDPOINT+"resturant/";
   private toggleRestaur= false;
   private toggleSelectedRest = true;
   constructor(private userService: UserService ,private orderService:OrdersService) { 
@@ -96,7 +97,7 @@ this.newRestaurant['menu']=menu;
     endjob[this.user._id]={userId:this.user._id,name:this.user.name}
      for ( var myuser of this.inviated.filter((val)=>val.difftype=="Friends") )
        { 
-         console.log("Friend",myuser)
+         endjob[myuser._id]={userId:myuser._id,name:myuser.name}
 
            }
     for ( var i of this.inviated.filter((val)=>val.difftype=="Groups") )

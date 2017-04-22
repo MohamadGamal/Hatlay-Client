@@ -48,7 +48,7 @@
                 <li *ngIf="logined" routerLink="/profile" routerLinkActive="active" ><a >{{user.name}}</a></li>
                 <li *ngIf="!logined" ><a   routerLink="/login" routerLinkActive="active">login</a></li>
                 <li *ngIf="!logined" ><a  routerLink="/register" routerLinkActive="active">register</a></li>
-                <li  ><a> <span (click)="openModal()" class="button-collapse" class="new badge blue">{{notificationNmber}}</span></a> </li>   
+                <li *ngIf="logined" ><a> <span (click)="openModal()" class="button-collapse" class="new badge blue">{{notificationNmber}}</span></a> </li>   
 <!--=======
                 <li *Iflogged  ><a  (click)="logout()" >logout</a></li>
                 <li *Iflogged  routerLink="/profile" routerLinkActive="active" ><a >{{user.name}}</a></li>

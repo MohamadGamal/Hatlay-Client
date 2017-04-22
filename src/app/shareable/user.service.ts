@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
-import {  Headers} from '@angular/http';
-import { AuthService }       from './auth.service';
+import { Injectable  } from '@angular/core';
+import { Headers     } from '@angular/http';
+import { AuthService } from './auth.service';
+import { AppSettings } from '../app.setting';
 
-import {Observable} from 'rxjs';
+import { Observable  } from 'rxjs';
 
 import { HttpClientService } from '../shareable/http-client.service'
 
@@ -10,7 +11,7 @@ import { HttpClientService } from '../shareable/http-client.service'
 export class UserService {
 private user;
 private userFull={};
-private Url = 'https://hatlay.herokuapp.com/';
+private Url = AppSettings.API_ENDPOINT+'user';
 private headers = new Headers({'Content-Type': 'application/json'});
  
   getUser(){
@@ -50,6 +51,16 @@ public addgrouptouser(userid,groupid) : Observable<any> {
  
 console.log("URL :",this.Url+"/"+userid+"/group"+groupid);
 return this.http.post(this.Url+"/"+userid+"/group",{id:groupid})
+.map(response => response.json()? response.json():false )
+.catch(response=> Observable.throw('errrror'));
+
+
+  }
+
+  public removegroupfromuser(userid,groupid) : Observable<any> {
+ 
+console.log("URL :",this.Url+"/"+userid+"/group"+groupid);
+return this.http.delete(this.Url+"/"+userid+"/group"+groupid)
 .map(response => response.json()? response.json():false )
 .catch(response=> Observable.throw('errrror'));
 

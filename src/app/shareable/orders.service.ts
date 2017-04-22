@@ -3,16 +3,29 @@ import { HttpClientService } from '../shareable/http-client.service'
 
 import { UserService } from '../shareable/user.service'
 import { Subject,Observable} from 'rxjs';
+import { AppSettings } from '../app.setting';
+
+
 
 @Injectable()
 export class OrdersService {
-  private Url = 'https://hatlay.herokuapp.com/order/'
+  
+  private Url = AppSettings.API_ENDPOINT+'order';
   constructor(private http: HttpClientService) { }
 
        getorders(id) : Observable<any> {
  
 
 return this.http.get(this.Url+"/user/"+id)
+.map(response => response.json()?response.json():false )
+.catch(response=> Observable.throw('errrror'));
+
+
+  }
+         getnotifs(arrf) : Observable<any> {
+
+
+return this.http.get(this.Url+"/notifs/"+(arrf.toString()).replace(/([^,]+)/g,"\"$1\"").replace(/(.+)/g,"[$1]"))
 .map(response => response.json()?response.json():false )
 .catch(response=> Observable.throw('errrror'));
 
@@ -41,6 +54,15 @@ return this.http.delete(this.Url+"/"+id)
  
 
 return this.http.put(this.Url+"/"+id+"/status/",{status:"Finished"})
+.map(response => response.json()?response.json():false )
+.catch(response=> Observable.throw('errrror'));
+
+
+  }
+    finalizeorder(id) : Observable<any> {
+ 
+
+return this.http.get(this.Url+"/"+id+"/finalize/")
 .map(response => response.json()?response.json():false )
 .catch(response=> Observable.throw('errrror'));
 
@@ -79,7 +101,7 @@ console.log(user)
   }
 
   public addRestaurant(restaurant):Observable<any> {
-    return this.http.post('http://localhost:8000/resturant/', restaurant)
+    return this.http.post(this.Url+'resturant/', restaurant)
       .map(response => response.json() ? response.json() : false)
       .catch(response => Observable.throw('errrror'));
 

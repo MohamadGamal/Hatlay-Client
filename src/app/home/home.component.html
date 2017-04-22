@@ -1,6 +1,11 @@
 <p>
   home works!
 </p>
+<p *ngFor="let order of notifs">
+{{friendsmap[order?.adminId]}}
+Ordered a new order from
+{{order?.resturant?.name}}
+</p>
     <!--<div>
       <a [routerLink]="['list']">Overview</a>
       <a [routerLink]="['edit']">Technical Specs</a>
