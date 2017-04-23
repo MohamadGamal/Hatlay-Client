@@ -1,13 +1,9 @@
-<p>
-  friends works!
-</p>
-
 
 
 <app-user-search [url]='URL' (selectedObject)="addSearchResult($event)" ></app-user-search>
 
 <div *ngIf="friend" class="chip">
-    <img src="http://lorempixel.com/100/190/nature/6" alt="Contact Person">
+    <img [src]="friend.img" alt="Contact Person">
           {{friend.name}}
           <a *ngIf="isFriend" (click)="unfollow(friend._id)" >Unfollow</a>
           <a *ngIf="!isFriend" (click)="follow(friend)" >follow</a>
@@ -16,11 +12,21 @@
 <div class="col  s10 m5 l3" *ngFor="let friend of user.friends " >
           <div class="card">
             <div class="card-image">
-              <img class="img" src="http://lorempixel.com/100/190/nature/6">
+              <img class="img" [src]="friend.img" >
               <span class="card-title">{{friend.name}}</span>
             </div>
             <div class="card-action">
               <a (click)="unfollow(friend._id )" >Unfollow</a>
             </div>
           </div>
+</div>
+<div *ngIf="user.friends.length < 1 " >
+
+    <div class="card">
+      <div class="card-content">
+        you dont have any frinds
+      </div>
+    </div>
+
+</div>
 </div>

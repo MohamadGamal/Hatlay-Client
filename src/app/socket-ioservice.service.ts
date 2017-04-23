@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject'; 
 import { Observable } from 'rxjs/Observable'; 
+import { AppSettings } from './app.setting'
 import * as io from 'socket.io-client';
 
 @Injectable()
 export class SocketIOServiceService {
 
- private url = 'http://localhost:8000'; 
+ private url = AppSettings.API_ENDPOINT; 
  private socket;
 
   constructor() { }

@@ -1,6 +1,13 @@
-<p>
-  home works!
-</p>
+    <div *ngFor="let order of notifs" class="row">
+      <div class="col s12 m5">
+        <div class="card-panel teal">
+          <span class="white-text">{{friendsmap[order?.adminId]}}
+Ordered a new order from
+{{order?.resturant?.name}}  </span>
+        </div>
+      </div>
+    </div>
+
     <!--<div>
       <a [routerLink]="['list']">Overview</a>
       <a [routerLink]="['edit']">Technical Specs</a>

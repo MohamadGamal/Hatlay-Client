@@ -1,8 +1,5 @@
 <div> 
-<p>
-  listorders works!
-              
-</p>
+
 
   <table>
         <thead>
@@ -18,18 +15,74 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let order of orderslist; let i = index;">
+          <tr *ngFor="let order of orderslist|propertymatcher:{exact:true,matched:'status',value:'Active'}; let i = index;">
             <td>{{order.number}}</td>
             <td>{{order.name}}</td>
             <td>{{order.users.length}}</td>
             <td>{{order.meals|unique:"userId"}}</td>
             <td>{{order.createdate}}</td>
-            <td> <a [routerLink]="['/orders/edit', order._id]">Add Meals</a> </td>
-            <td *ngIf="order.status=='Active'&&order.adminId==this.userservice.getUser()._id"> <button (click)="finishorder(order?._id)">Finish</button>
+            <td> <a *ngIf="order.status=='Active'" [routerLink]="['/orders/edit', order._id]">Add Meals</a> </td>
+            <td *ngIf="order.status=='Active'&& order.adminId==this.userservice.getUser()._id"> <button (click)="finishorder(order?._id)">Finish</button>
             <button (click)="removeorder(order?._id)">Cancel</button>
              </td>
           </tr>
 
         </tbody>
       </table>
+
+
+  <table>
+        <thead>
+          <tr>
+              <th>Order Number</th>
+              <th>Order Name</th>
+              <th>Order Users</th>
+              <th>Unique Users</th>
+             <th>Creation Date</th>
+  
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let order of orderslist|propertymatcher:{exact:true,matched:'status',value:'Finished'}; let i = index;">
+            <td>{{order.number}}</td>
+            <td>{{order.name}}</td>
+            <td>{{order.users.length}}</td>
+            <td>{{order.meals|unique:"userId"}}</td>
+            <td>{{order.createdate}}</td>
+   
+          </tr>
+
+        </tbody>
+      </table>
+      
 </div> 
+
+
+
+
+<div id="modal3" class="modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modal3Action">
+  <div class="modal-content">
+    <table>
+        <thead>
+          <tr>
+              <th>User Name</th>
+              <th>Total Value</th>
+  
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let order of modalord; let i = index;">
+            <td>{{order._id.name}}</td>
+            <td>{{order.value}}</td>
+          </tr>
+
+        </tbody>
+      </table>
+  </div>
+  <div class="modal-footer">
+    <a (click)="closeModal()" class="modal-action modal-close waves-effect waves-green btn-flat">Finish</a>
+   
+  </div>
+</div>

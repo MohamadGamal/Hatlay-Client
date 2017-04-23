@@ -27,6 +27,7 @@ export class AppComponent implements OnInit, OnChanges {
   message;
   constructor(private router: Router, private authService: AuthService
     , private userService: UserService, private socketIOServiceService: SocketIOServiceService) {
+      this.authService.lookupuserData();
     this.authService.isLoggedIn().subscribe(loggedIn => {
       this.logined = loggedIn;
       this.user = this.userService.getUser();

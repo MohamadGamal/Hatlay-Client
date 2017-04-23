@@ -1,9 +1,7 @@
-  <p>
-  groups works!
-</p>
+
 <div>
 
-<app-singlegroup [group]="'MND'"></app-singlegroup>
+
 <ul>
 <li *ngFor="let item of user?.friends; let i = index; ">{{friend1}}</li>
 </ul>
@@ -34,15 +32,62 @@
   <button (click)="addgroup(gname.value);gname.value='';" >Add Group</button>
 
 
+
 <!--addgroup(gname.value);gname.value=''; fname.value='';-->
 
 
 
+<!--button (click)="openModal();" >Add Group</button-->
 
 
 
 
+  <ul class="collection">
+    <li *ngFor="let group of user?.groups; let i = index;" class="collection-item avatar">
+      <img [src]="group.image" alt="" class="circle">
+      <span class="title">{{group.name}}</span>
+      <p>{{group.users.length}} members<br>
+         
+      </p>
+      <a  (click)="getgroup(group._id)" class="secondary-content"><i class="material-icons">Edit</i></a>
+    </li>
+    
+  </ul>
+           
 
 
+</div>
 
+<div id="modal1" class="modal " materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalAction">
+  <div class="modal-content">
+    YES
+    <div>
+      <ul class="collection">
+ 
+        <li *ngFor="let guser of editList" class="collection-item avatar">
+          <img [src]="guser?.image" alt="" class="circle">
+          <span class="title">{{guser.name}}</span>
+          <p>{{guser.email}} members<br>
+
+          </p>
+          <a *ngIf="guser?._id != selectedgroup?.adminId"(click)="deleteed(guser)" class="secondary-content"><i class="material-icons">Remove</i></a>
+        </li>
+
+      </ul>
+
+      <input placeholder="User Name"  >
+      <div>
+
+        <div *ngFor="let item of userfriends|minus:{filterarray:editList,filterelems:['_id']}; let i = index;" >
+           name : {{item.name}} , email : {{item.email}}
+           <button (click)="added(item)">ADD Friend</button></div>
+       
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a (click)="closeModal()" class="modal-action modal-close waves-effect waves-green btn-flat">Finish</a>
+   
+  </div>
 </div>
